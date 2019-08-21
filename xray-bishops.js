@@ -112,6 +112,8 @@ function solution_2 (boardSize, bishopTuples) {
 
 // TEST CASES
 
+const equals = require('./_equality-checker');
+
 // Test case 1
 const T1_boardSize = 5;
 const T1_bishopTuples = [
@@ -120,7 +122,13 @@ const T1_bishopTuples = [
   [2, 2],
   [4, 0],
 ];
-console.log(xrayBishops(T1_boardSize, T1_bishopTuples))   // 2
+const T1_expected = 2;
+const T1_output = xrayBishops(T1_boardSize, T1_bishopTuples);
+console.log(
+  equals(T1_output, T1_expected)
+    ? 'TEST 1 PASSED'
+    : `TEST 1 FAILED: EXPECTED ${T1_expected} BUT GOT ${T1_output}`
+);
 
 // Test case 2
 const T2_boardSize = 8;
@@ -135,7 +143,13 @@ const T2_bishopTuples = [
   [6, 7],
   [7, 6],
 ];
-console.log(xrayBishops(T2_boardSize, T2_bishopTuples))   // 12
+const T2_expected = 12;
+const T2_output = xrayBishops(T2_boardSize, T2_bishopTuples);
+console.log(
+  equals(T2_output, T2_expected)
+    ? 'TEST 2 PASSED'
+    : `TEST 2 FAILED: EXPECTED ${T2_expected} BUT GOT ${T2_output}`
+);
 
 // Test case 3
 const T3_boardSize = 3;
@@ -150,4 +164,10 @@ const T3_bishopTuples = [
   [2, 1],
   [2, 2],
 ];
-console.log(xrayBishops(T3_boardSize, T3_bishopTuples))   // 10
+const T3_expected = 10;
+const T3_output = xrayBishops(T3_boardSize, T3_bishopTuples);
+console.log(
+  equals(T3_output, T3_expected)
+    ? 'TEST 3 PASSED'
+    : `TEST 3 FAILED: EXPECTED ${T3_expected} BUT GOT ${T3_output}`
+);
