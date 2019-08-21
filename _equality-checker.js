@@ -1,20 +1,22 @@
 function equals (actual, expected) {
-  if (actual.constructor === Array) {
-    if (actual.length !== expected.length) return false;
-    for (let i = 0; i < actual.length; i++) {
-      if (!equals(actual[i], expected[i])) return false;
-    }
-    return true;
-  } else if (actual.constructor === Object) {
-    const actualKeys = Object.keys(actual).sort();
-    const expectedKeys = Object.keys(expected).sort();
-    if (!equals(actualKeys, expectedKeys)) return false;
-    for (let i = 0; i < actualKeys.length; i++) {
-      if (!equals(actual[actualKeys[i]], expected[expectedKeys[i]])) return false;
-    }
-    return true;
-  } else {
-    return actual === expected;
+  if (actual.constructor !== expected.constructor) return false;
+  switch (actual.constructor) {
+    case Array:
+      if (actual.length !== expected.length) return false;
+      for (let i = 0; i < actual.length; i++) {
+        if (!equals(actual[i], expected[i])) return false;
+      }
+      return true;
+    case Object:
+      const actualKeys = Object.keys(actual).sort();
+      const expectedKeys = Object.keys(expected).sort();
+      if (!equals(actualKeys, expectedKeys)) return false;
+      for (let i = 0; i < actualKeys.length; i++) {
+        if (!equals(actual[actualKeys[i]], expected[expectedKeys[i]])) return false;
+      }
+      return true;
+    default:
+      return actual === expected;
   }
 }
 
