@@ -1,3 +1,19 @@
+// SOURCE: A friend tells me that this problem was asked by Bloomberg.
+
+// Given a Binary Search Tree, implement a method called groupIntoArrays that returns an array of "groups", where a "group" is itself an array of all the node values in the BST at a given depth. The groups should appear in the order starting with the deepest nodes, and ending with a group containing only the root.
+
+// For example, given the following BST:
+
+//      50
+//     /  \
+//   40    60
+//  / \    / \
+// 35 45  55  65
+
+// Return [ [35, 45, 55, 65], [40, 60], [50] ].
+
+// Note: The BST class with constructor and "insert" method are already provided. The code for this comes from AlgoExpert.
+
 class BST {
   constructor(value) {
     this.value = value;
