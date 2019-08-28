@@ -15,14 +15,45 @@ function solution_1 (INPUT_HERE) {
 // TEST CASES
 
 const equals = require('./_equality-checker');
+let testNum = 1;
+let input, output, expected;
 const func = FUNCTION_NAME_HERE;
 
 // Test case 1
-const T1_INPUT_HERE = 'INPUT_HERE';
-const T1_expected = 'EXPECTED_OUTPUT_HERE';
-const T1_output = func(T1_INPUT_HERE);
+input = {
+  ARG_1: 'INPUT_HERE',
+};
+expected = 'EXPECTED_HERE';
+output = func(...Object.values(input));
 console.log(
-  equals(T1_output, T1_expected)
-    ? 'TEST 1 PASSED'
-    : `TEST 1 FAILED: EXPECTED ${T1_expected} BUT GOT ${T1_output}`
+  equals(output, expected)
+    ? `TEST ${testNum} PASSED`
+    : `TEST ${testNum} FAILED: EXPECTED ${expected} BUT GOT ${output}`
 );
+testNum++;
+
+// Test case 2
+input = {
+  ARG_1: 'INPUT_HERE',
+};
+expected = 'EXPECTED_HERE';
+output = func(...Object.values(input));
+console.log(
+  equals(output, expected)
+    ? `TEST ${testNum} PASSED`
+    : `TEST ${testNum} FAILED: EXPECTED ${expected} BUT GOT ${output}`
+);
+testNum++;
+
+// Test case 3
+input = {
+  ARG_1: 'INPUT_HERE',
+};
+expected = 'EXPECTED_HERE';
+output = func(...Object.values(input));
+console.log(
+  equals(output, expected)
+    ? `TEST ${testNum} PASSED`
+    : `TEST ${testNum} FAILED: EXPECTED ${expected} BUT GOT ${output}`
+);
+testNum++;

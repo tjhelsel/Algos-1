@@ -78,9 +78,12 @@ class BST {
 // TEST CASES
 
 const equals = require('./_equality-checker');
+let testNum = 1;
+let input, output, expected;
+//const func = FUNCTION_NAME_HERE;
 
 // Test case 1
-const T1_BST = new BST(50)
+input = new BST(50)
   .insert(40)
   .insert(60)
   .insert(35)
@@ -93,7 +96,7 @@ const T1_BST = new BST(50)
   .insert(20)
   .insert(34)
   .insert(90);
-const T1_expected = [
+expected = [
   [20, 34, 90],
   [33, 80],
   [0, 70],
@@ -101,9 +104,10 @@ const T1_expected = [
   [40, 60],
   [50],
 ];
-const T1_output = T1_BST.groupIntoArrays();
+output = input.groupIntoArrays();
 console.log(
-  equals(T1_output, T1_expected)
-    ? 'TEST 1 PASSED'
-    : `TEST 1 FAILED: EXPECTED ${T1_expected} BUT GOT ${T1_output}`
+  equals(output, expected)
+    ? `TEST ${testNum} PASSED`
+    : `TEST ${testNum} FAILED: EXPECTED ${expected} BUT GOT ${output}`
 );
+testNum++;

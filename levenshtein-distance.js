@@ -69,169 +69,216 @@ function solution_1 (str1, str2) {
 // TEST CASES
 
 const equals = require('./_equality-checker');
+let testNum = 1;
+let input, output, expected;
 const func = levenshteinDistance;
 
 // Test case 1
-const T1_str1 = '';
-const T1_str2 = '';
-const T1_expected = 0;
-const T1_output = func(T1_str1, T1_str2);
+input = {
+  str1: '',
+  str2: '',
+};
+expected = 0;
+output = func(...Object.values(input));
 console.log(
-  equals(T1_output, T1_expected)
-    ? 'TEST 1 PASSED'
-    : `TEST 1 FAILED: EXPECTED ${T1_expected} BUT GOT ${T1_output}`
+  equals(output, expected)
+    ? `TEST ${testNum} PASSED`
+    : `TEST ${testNum} FAILED: EXPECTED ${expected} BUT GOT ${output}`
 );
+testNum++;
 
 // Test case 2
-const T2_str1 = '';
-const T2_str2 = 'abc';
-const T2_expected = 3;
-const T2_output = func(T2_str1, T2_str2);
+input = {
+  str1: '',
+  str2: 'abc',
+};
+expected = 3;
+output = func(...Object.values(input));
 console.log(
-  equals(T2_output, T2_expected)
-    ? 'TEST 2 PASSED'
-    : `TEST 2 FAILED: EXPECTED ${T2_expected} BUT GOT ${T2_output}`
+  equals(output, expected)
+    ? `TEST ${testNum} PASSED`
+    : `TEST ${testNum} FAILED: EXPECTED ${expected} BUT GOT ${output}`
 );
+testNum++;
 
 // Test case 3
-const T3_str1 = 'abc';
-const T3_str2 = 'abc';
-const T3_expected = 0;
-const T3_output = func(T3_str1, T3_str2);
+input = {
+  str1: 'abc',
+  str2: 'abc',
+};
+expected = 0;
+output = func(...Object.values(input));
 console.log(
-  equals(T3_output, T3_expected)
-    ? 'TEST 3 PASSED'
-    : `TEST 3 FAILED: EXPECTED ${T3_expected} BUT GOT ${T3_output}`
+  equals(output, expected)
+    ? `TEST ${testNum} PASSED`
+    : `TEST ${testNum} FAILED: EXPECTED ${expected} BUT GOT ${output}`
 );
+testNum++;
 
 // Test case 4
-const T4_str1 = 'abc';
-const T4_str2 = 'abx';
-const T4_expected = 1;
-const T4_output = func(T4_str1, T4_str2);
+input = {
+  str1: 'abc',
+  str2: 'abx',
+};
+expected = 1;
+output = func(...Object.values(input));
 console.log(
-  equals(T4_output, T4_expected)
-    ? 'TEST 4 PASSED'
-    : `TEST 4 FAILED: EXPECTED ${T4_expected} BUT GOT ${T4_output}`
+  equals(output, expected)
+    ? `TEST ${testNum} PASSED`
+    : `TEST ${testNum} FAILED: EXPECTED ${expected} BUT GOT ${output}`
 );
+testNum++;
 
 // Test case 5
-const T5_str1 = 'abc';
-const T5_str2 = 'abcx';
-const T5_expected = 1;
-const T5_output = func(T5_str1, T5_str2);
+input = {
+  str1: 'abc',
+  str2: 'abcx',
+};
+expected = 1;
+output = func(...Object.values(input));
 console.log(
-  equals(T5_output, T5_expected)
-    ? 'TEST 5 PASSED'
-    : `TEST 5 FAILED: EXPECTED ${T5_expected} BUT GOT ${T5_output}`
+  equals(output, expected)
+    ? `TEST ${testNum} PASSED`
+    : `TEST ${testNum} FAILED: EXPECTED ${expected} BUT GOT ${output}`
 );
+testNum++;
 
 // Test case 6
-const T6_str1 = 'abc';
-const T6_str2 = 'yabcx';
-const T6_expected = 2;
-const T6_output = func(T6_str1, T6_str2);
+input = {
+  str1: 'abc',
+  str2: 'yabcx',
+};
+expected = 2;
+output = func(...Object.values(input));
 console.log(
-  equals(T6_output, T6_expected)
-    ? 'TEST 6 PASSED'
-    : `TEST 6 FAILED: EXPECTED ${T6_expected} BUT GOT ${T6_output}`
+  equals(output, expected)
+    ? `TEST ${testNum} PASSED`
+    : `TEST ${testNum} FAILED: EXPECTED ${expected} BUT GOT ${output}`
 );
+testNum++;
 
 // Test case 7
-const T7_str1 = 'algoexpert';
-const T7_str2 = 'algozexpert';
-const T7_expected = 1;
-const T7_output = func(T7_str1, T7_str2);
+input = {
+  str1: 'algoexpert',
+  str2: 'algozexpert',
+};
+expected = 1;
+output = func(...Object.values(input));
 console.log(
-  equals(T7_output, T7_expected)
-    ? 'TEST 7 PASSED'
-    : `TEST 7 FAILED: EXPECTED ${T7_expected} BUT GOT ${T7_output}`
+  equals(output, expected)
+    ? `TEST ${testNum} PASSED`
+    : `TEST ${testNum} FAILED: EXPECTED ${expected} BUT GOT ${output}`
 );
+testNum++;
 
 // Test case 8
-const T8_str1 = 'abcdefghij';
-const T8_str2 = '1234567890';
-const T8_expected = 10;
-const T8_output = func(T8_str1, T8_str2);
+input = {
+  str1: 'abcdefghij',
+  str2: '1234567890',
+};
+expected = 10;
+output = func(...Object.values(input));
 console.log(
-  equals(T8_output, T8_expected)
-    ? 'TEST 8 PASSED'
-    : `TEST 8 FAILED: EXPECTED ${T8_expected} BUT GOT ${T8_output}`
+  equals(output, expected)
+    ? `TEST ${testNum} PASSED`
+    : `TEST ${testNum} FAILED: EXPECTED ${expected} BUT GOT ${output}`
 );
+testNum++;
 
 // Test case 9
-const T9_str1 = 'abcdefghij';
-const T9_str2 = 'a234567890';
-const T9_expected = 9;
-const T9_output = func(T9_str1, T9_str2);
+input = {
+  str1: 'abcdefghij',
+  str2: 'a234567890',
+};
+expected = 9;
+output = func(...Object.values(input));
 console.log(
-  equals(T9_output, T9_expected)
-    ? 'TEST 9 PASSED'
-    : `TEST 9 FAILED: EXPECTED ${T9_expected} BUT GOT ${T9_output}`
+  equals(output, expected)
+    ? `TEST ${testNum} PASSED`
+    : `TEST ${testNum} FAILED: EXPECTED ${expected} BUT GOT ${output}`
 );
+testNum++;
 
 // Test case 10
-const T10_str1 = 'biting';
-const T10_str2 = 'mitten';
-const T10_expected = 4;
-const T10_output = func(T10_str1, T10_str2);
+input = {
+  str1: 'biting',
+  str2: 'mitten',
+};
+expected = 4;
+output = func(...Object.values(input));
 console.log(
-  equals(T10_output, T10_expected)
-    ? 'TEST 10 PASSED'
-    : `TEST 10 FAILED: EXPECTED ${T10_expected} BUT GOT ${T10_output}`
+  equals(output, expected)
+    ? `TEST ${testNum} PASSED`
+    : `TEST ${testNum} FAILED: EXPECTED ${expected} BUT GOT ${output}`
 );
+testNum++;
 
 // Test case 11
-const T11_str1 = 'cereal';
-const T11_str2 = 'saturday';
-const T11_expected = 6;
-const T11_output = func(T11_str1, T11_str2);
+input = {
+  str1: 'cereal',
+  str2: 'saturday',
+};
+expected = 6;
+output = func(...Object.values(input));
 console.log(
-  equals(T11_output, T11_expected)
-    ? 'TEST 11 PASSED'
-    : `TEST 11 FAILED: EXPECTED ${T11_expected} BUT GOT ${T11_output}`
+  equals(output, expected)
+    ? `TEST ${testNum} PASSED`
+    : `TEST ${testNum} FAILED: EXPECTED ${expected} BUT GOT ${output}`
 );
+testNum++;
 
 // Test case 12
-const T12_str1 = 'cereal';
-const T12_str2 = 'saturdzz';
-const T12_expected = 7;
-const T12_output = func(T12_str1, T12_str2);
+input = {
+  str1: 'cereal',
+  str2: 'saturdzz',
+};
+expected = 7;
+output = func(...Object.values(input));
 console.log(
-  equals(T12_output, T12_expected)
-    ? 'TEST 12 PASSED'
-    : `TEST 12 FAILED: EXPECTED ${T12_expected} BUT GOT ${T12_output}`
+  equals(output, expected)
+    ? `TEST ${testNum} PASSED`
+    : `TEST ${testNum} FAILED: EXPECTED ${expected} BUT GOT ${output}`
 );
+testNum++;
 
 // Test case 13
-const T13_str1 = 'abbbbbbbbb';
-const T13_str2 = 'bbbbbbbbba';
-const T13_expected = 2;
-const T13_output = func(T13_str1, T13_str2);
+input = {
+  str1: 'abbbbbbbbb',
+  str2: 'bbbbbbbbba',
+};
+expected = 2;
+output = func(...Object.values(input));
 console.log(
-  equals(T13_output, T13_expected)
-    ? 'TEST 13 PASSED'
-    : `TEST 13 FAILED: EXPECTED ${T13_expected} BUT GOT ${T13_output}`
+  equals(output, expected)
+    ? `TEST ${testNum} PASSED`
+    : `TEST ${testNum} FAILED: EXPECTED ${expected} BUT GOT ${output}`
 );
+testNum++;
 
 // Test case 14
-const T14_str1 = 'abc';
-const T14_str2 = 'yabd';
-const T14_expected = 2;
-const T14_output = func(T14_str1, T14_str2);
+input = {
+  str1: 'abc',
+  str2: 'yabd',
+};
+expected = 2;
+output = func(...Object.values(input));
 console.log(
-  equals(T14_output, T14_expected)
-    ? 'TEST 14 PASSED'
-    : `TEST 14 FAILED: EXPECTED ${T14_expected} BUT GOT ${T14_output}`
+  equals(output, expected)
+    ? `TEST ${testNum} PASSED`
+    : `TEST ${testNum} FAILED: EXPECTED ${expected} BUT GOT ${output}`
 );
+testNum++;
 
 // Test case 15
-const T15_str1 = 'xabc';
-const T15_str2 = 'abcx';
-const T15_expected = 2;
-const T15_output = func(T15_str1, T15_str2);
+input = {
+  str1: 'xabc',
+  str2: 'abcx',
+};
+expected = 2;
+output = func(...Object.values(input));
 console.log(
-  equals(T15_output, T15_expected)
-    ? 'TEST 15 PASSED'
-    : `TEST 15 FAILED: EXPECTED ${T15_expected} BUT GOT ${T15_output}`
+  equals(output, expected)
+    ? `TEST ${testNum} PASSED`
+    : `TEST ${testNum} FAILED: EXPECTED ${expected} BUT GOT ${output}`
 );
+testNum++;

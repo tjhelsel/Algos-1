@@ -23,14 +23,18 @@
 // Output: [1, 2, 3, 4, 8, 12, 11, 10, 9, 5, 6, 7]
 
 // SWITCHING BETWEEN SOLUTIONS:
-const spiralOrder = solution_1;
+const spiralOrder = solution_2;
 
 function solution_1 (matrix, dir, TL, TR, BR, BL) {
 
-  // SOLUTION 1 [O(n*m) time (n and m are the dimensions of the matrix), O(1) space]:
-  // 
+  // SOLUTION 1 [O(n*m) time (n and m are the dimensions of the matrix), O(n) space]:
+  // the variables TL, TR, BR, and BL mark the coordinates of the area of the matrix currently being considered, and the variable dir represents the direction.
+  // starting values put TL, TR, BR, and BL at the outer corners of the matrix, and dir as 'R'. based on the direction, run along the corresponding edge of the
+  // matrix, gathering up all values along the way. then, strip off the edge that was just processed, and start at the new corner, and change directions. note
+  // that when the area is stripped down to 1 x n (where n > 1), this code will essentially skip that edge of 1 and move to the next direction. edge cases include
+  // an empty input array, or an input of a 1 x 1 matrix - both can easily be handled up front.
 
-  // EDGE CASE: EMPTY INPUT OR 1x1 MATRIX
+  // EDGE CASE: EMPTY OR 1x1 MATRIX INPUT
   if (!matrix.length) return [];
   if (matrix.length === 1 && matrix[0].length === 1) return matrix[0];
 
@@ -90,66 +94,147 @@ function solution_1 (matrix, dir, TL, TR, BR, BL) {
   return currentEdge.concat(spiralOrder(matrix, nextDir[dir], TL, TR, BR, BL));   // concat currentEdge to result of further calls. pass in nextDir and current corners.
 };
 
+function solution_2 (matrix) {
+
+  // SOLUTION 2 [O(n*m) time (n and m are the dimensions of the matrix), O(n) space]:
+  // start at the top left of the matrix, running to the right, and track your current coordinates. maintain a while loop as long as the output array has fewer than
+  // n * m elements. push the current coordinates into the output array, and reassign the value to null. keep running in the current direction until you either run
+  // up against the edge of the matrix, or you run into a visited element (i.e. it is null). the advantage of this approach is that it is a little easier to code
+  // out and does not use recursion, but the disadvantage is that the data gets lost (unless you clone it first).
+
+  // EDGE CASE: EMPTY INPUT
+  if (!matrix.length) return [];
+
+  // INTIALIZATIONS
+  const output = [];
+  const currentPos = [0, 0];
+  let dir = 'R';
+
+  // RUN LOOP WHILE OUTPUT CONTAINS FEWER THAN n * m ELEMENTS
+  while (output.length < matrix.length * matrix[0].length) {
+    // PUSH ELEMENT AT currentPos INTO output
+    output.push(matrix[currentPos[0]][currentPos[1]]);
+    // REASSIGN ELEMENT AT currentPos TO null
+    matrix[currentPos[0]][currentPos[1]] = null;
+    // DETERMINE THE NEXT POSITION BASED ON currentDir (PROCEED IN SAME DIRECTION UNLESS YOU RUN INTO EDGE OF MATRIX OR INTO VISITED ELEMENT)
+    switch (dir) {
+      case 'R':
+        if (currentPos[1] === matrix[0].length - 1 || matrix[currentPos[0]][currentPos[1] + 1] === null) {
+          dir = 'D';
+          currentPos[0]++;
+        } else {
+          currentPos[1]++;
+        }
+        break;
+      case 'D':
+        if (currentPos[0] === matrix.length - 1 || matrix[currentPos[0] + 1][currentPos[1]] === null) {
+          dir = 'L';
+          currentPos[1]--;
+        } else {
+          currentPos[0]++;
+        }
+        break;
+      case 'L':
+        if (currentPos[1] === 0 || matrix[currentPos[0]][currentPos[1] - 1] === null) {
+          dir = 'U';
+          currentPos[0]--;
+        } else {
+          currentPos[1]--;
+        }
+        break;
+      case 'U':
+        if (currentPos[0] === 0 || matrix[currentPos[0] - 1][currentPos[1]] === null) {
+          dir = 'R';
+          currentPos[1]++;
+        } else {
+          currentPos[0]--;
+        }
+        break;
+    }
+  }
+  return output;
+}
+
 // TEST CASES
 
 const equals = require('./_equality-checker');
+let testNum = 1;
+let input, output, expected;
 const func = spiralOrder;
 
 // Test case 1
-const T1_matrix = [];
-const T1_expected = [];
-const T1_output = func(T1_matrix);
+input = {
+  matrix: [],
+};
+expected = [];
+output = func(...Object.values(input));
 console.log(
-  equals(T1_output, T1_expected)
-    ? 'TEST 1 PASSED'
-    : `TEST 1 FAILED: EXPECTED ${T1_expected} BUT GOT ${T1_output}`
+  equals(output, expected)
+    ? `TEST ${testNum} PASSED`
+    : `TEST ${testNum} FAILED: EXPECTED ${expected} BUT GOT ${output}`
 );
+testNum++;
 
 // Test case 2
-const T2_matrix = [
-  [1],
-];
-const T2_expected = [1];
-const T2_output = func(T2_matrix);
+input = {
+  matrix: [
+    [1]
+  ],
+};
+expected = [1];
+output = func(...Object.values(input));
 console.log(
-  equals(T2_output, T2_expected)
-    ? 'TEST 2 PASSED'
-    : `TEST 2 FAILED: EXPECTED ${T2_expected} BUT GOT ${T2_output}`
+  equals(output, expected)
+    ? `TEST ${testNum} PASSED`
+    : `TEST ${testNum} FAILED: EXPECTED ${expected} BUT GOT ${output}`
 );
-
+testNum++;
 
 // Test case 3
-const T3_matrix = [
-  [1, 2, 3, 4, 5],
-];
-const T3_expected = [1, 2, 3, 4, 5];
-const T3_output = func(T3_matrix);
+input = {
+  matrix: [
+    [1, 2, 3, 4, 5],
+  ],
+};
+expected = [1, 2, 3, 4, 5];
+output = func(...Object.values(input));
 console.log(
-  equals(T3_output, T3_expected)
-    ? 'TEST 3 PASSED'
-    : `TEST 3 FAILED: EXPECTED ${T3_expected} BUT GOT ${T3_output}`
+  equals(output, expected)
+    ? `TEST ${testNum} PASSED`
+    : `TEST ${testNum} FAILED: EXPECTED ${expected} BUT GOT ${output}`
 );
+testNum++;
 
 // Test case 4
-const T4_matrix = [
-  [1, 2, 3],
-  [4, 5, 6],
-  [7, 8, 9],
-];
-const T4_expected = [1, 2, 3, 6, 9, 8, 7, 4, 5];
-const T4_output = func(T4_matrix);
+input = {
+  matrix: [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9],
+  ],
+};
+expected = [1, 2, 3, 6, 9, 8, 7, 4, 5];
+output = func(...Object.values(input));
 console.log(
-  equals(T4_output, T4_expected)
-    ? 'TEST 4 PASSED'
-    : `TEST 4 FAILED: EXPECTED ${T4_expected} BUT GOT ${T4_output}`
+  equals(output, expected)
+    ? `TEST ${testNum} PASSED`
+    : `TEST ${testNum} FAILED: EXPECTED ${expected} BUT GOT ${output}`
 );
+testNum++;
 
 // Test case 5
-const T5_matrix = [[2, 5], [8, 4], [0, -1]];
-const T5_expected = [2, 5, 4, -1, 0, 8];
-const T5_output = func(T5_matrix);
+input = {
+  matrix: [
+    [2, 5],
+    [8, 4],
+    [0, -1]
+  ],
+};
+expected = [2, 5, 4, -1, 0, 8];
+output = func(...Object.values(input));
 console.log(
-  equals(T5_output, T5_expected)
-    ? 'TEST 5 PASSED'
-    : `TEST 5 FAILED: EXPECTED ${T5_expected} BUT GOT ${T5_output}`
+  equals(output, expected)
+    ? `TEST ${testNum} PASSED`
+    : `TEST ${testNum} FAILED: EXPECTED ${expected} BUT GOT ${output}`
 );
+testNum++;

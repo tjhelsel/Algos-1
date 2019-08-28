@@ -113,62 +113,73 @@ function solution_2 (boardSize, bishopTuples) {
 // TEST CASES
 
 const equals = require('./_equality-checker');
+let testNum = 1;
+let input, output, expected;
 const func = xrayBishops;
 
 // Test case 1
-const T1_boardSize = 5;
-const T1_bishopTuples = [
-  [0, 0],
-  [1, 2],
-  [2, 2],
-  [4, 0],
-];
-const T1_expected = 2;
-const T1_output = func(T1_boardSize, T1_bishopTuples);
+input = {
+  boardSize: 5,
+  bishopTuples: [
+    [0, 0],
+    [1, 2],
+    [2, 2],
+    [4, 0],
+  ],
+};
+expected = 2;
+output = func(...Object.values(input));
 console.log(
-  equals(T1_output, T1_expected)
-    ? 'TEST 1 PASSED'
-    : `TEST 1 FAILED: EXPECTED ${T1_expected} BUT GOT ${T1_output}`
+  equals(output, expected)
+    ? `TEST ${testNum} PASSED`
+    : `TEST ${testNum} FAILED: EXPECTED ${expected} BUT GOT ${output}`
 );
+testNum++;
 
 // Test case 2
-const T2_boardSize = 8;
-const T2_bishopTuples = [
-  [0, 5],
-  [1, 6],
-  [1, 7],
-  [2, 1],
-  [3, 4],
-  [4, 3],
-  [6, 1],
-  [6, 7],
-  [7, 6],
-];
-const T2_expected = 12;
-const T2_output = func(T2_boardSize, T2_bishopTuples);
+input = {
+  boardSize: 8,
+  bishopTuples: [
+    [0, 5],
+    [1, 6],
+    [1, 7],
+    [2, 1],
+    [3, 4],
+    [4, 3],
+    [6, 1],
+    [6, 7],
+    [7, 6],
+  ],
+};
+expected = 12;
+output = func(...Object.values(input));
 console.log(
-  equals(T2_output, T2_expected)
-    ? 'TEST 2 PASSED'
-    : `TEST 2 FAILED: EXPECTED ${T2_expected} BUT GOT ${T2_output}`
+  equals(output, expected)
+    ? `TEST ${testNum} PASSED`
+    : `TEST ${testNum} FAILED: EXPECTED ${expected} BUT GOT ${output}`
 );
+testNum++;
 
 // Test case 3
-const T3_boardSize = 3;
-const T3_bishopTuples = [
-  [0, 0],
-  [0, 1],
-  [0, 2],
-  [1, 0],
-  [1, 1],
-  [1, 2],
-  [2, 0],
-  [2, 1],
-  [2, 2],
-];
-const T3_expected = 10;
-const T3_output = func(T3_boardSize, T3_bishopTuples);
+input = {
+  boardSize: 3,
+  bishopTuples: [
+    [0, 0],
+    [0, 1],
+    [0, 2],
+    [1, 0],
+    [1, 1],
+    [1, 2],
+    [2, 0],
+    [2, 1],
+    [2, 2],
+  ],
+};
+expected = 10;
+output = func(...Object.values(input));
 console.log(
-  equals(T3_output, T3_expected)
-    ? 'TEST 3 PASSED'
-    : `TEST 3 FAILED: EXPECTED ${T3_expected} BUT GOT ${T3_output}`
+  equals(output, expected)
+    ? `TEST ${testNum} PASSED`
+    : `TEST ${testNum} FAILED: EXPECTED ${expected} BUT GOT ${output}`
 );
+testNum++;

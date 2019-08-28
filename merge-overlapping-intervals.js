@@ -73,43 +73,51 @@ function solution_2(intervals) {
 // TEST CASES
 
 const equals = require('./_equality-checker');
+let testNum = 1;
+let input, output, expected;
 const func = mergeOverlappingIntervals;
 
 // Test case 1
-const T1_intervals = [
+input = {
+  intervals: [
+    [1, 3],
+    [5, 8],
+    [4, 10],
+    [20, 25],
+  ],
+};
+expected = [
   [1, 3],
-  [5, 8],
   [4, 10],
   [20, 25],
 ];
-const T1_expected = [
-  [1, 3],
-  [4, 10],
-  [20, 25],
-];
-const T1_output = func(T1_intervals);
+output = func(...Object.values(input));
 console.log(
-  equals(T1_output, T1_expected)
-    ? 'TEST 1 PASSED'
-    : `TEST 1 FAILED: EXPECTED ${T1_expected} BUT GOT ${T1_output}`
+  equals(output, expected)
+    ? `TEST ${testNum} PASSED`
+    : `TEST ${testNum} FAILED: EXPECTED ${expected} BUT GOT ${output}`
 );
+testNum++;
 
 // Test case 2
-const T2_intervals = [
-  [7, 9],
-  [4, 7],
-  [14, 15],
-  [1, 5],
-  [10, 12],
-];
-const T2_expected = [
+input = {
+  intervals: [
+    [7, 9],
+    [4, 7],
+    [14, 15],
+    [1, 5],
+    [10, 12],
+  ],
+};
+expected = [
   [1, 9],
   [10, 12],
   [14, 15],
 ];
-const T2_output = func(T2_intervals);
+output = func(...Object.values(input));
 console.log(
-  equals(T2_output, T2_expected)
-    ? 'TEST 2 PASSED'
-    : `TEST 2 FAILED: EXPECTED ${T2_expected} BUT GOT ${T2_output}`
+  equals(output, expected)
+    ? `TEST ${testNum} PASSED`
+    : `TEST ${testNum} FAILED: EXPECTED ${expected} BUT GOT ${output}`
 );
+testNum++;
