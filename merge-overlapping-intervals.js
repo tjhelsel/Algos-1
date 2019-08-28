@@ -73,6 +73,7 @@ function solution_2(intervals) {
 // TEST CASES
 
 const equals = require('./_equality-checker');
+const func = mergeOverlappingIntervals;
 
 // Test case 1
 const T1_intervals = [
@@ -86,7 +87,7 @@ const T1_expected = [
   [4, 10],
   [20, 25],
 ];
-const T1_output = mergeOverlappingIntervals(T1_intervals);
+const T1_output = func(T1_intervals);
 console.log(
   equals(T1_output, T1_expected)
     ? 'TEST 1 PASSED'
@@ -106,7 +107,7 @@ const T2_expected = [
   [10, 12],
   [14, 15],
 ];
-const T2_output = mergeOverlappingIntervals(T2_intervals);
+const T2_output = func(T2_intervals);
 console.log(
   equals(T2_output, T2_expected)
     ? 'TEST 2 PASSED'

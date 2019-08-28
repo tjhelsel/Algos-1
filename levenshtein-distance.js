@@ -69,12 +69,13 @@ function solution_1 (str1, str2) {
 // TEST CASES
 
 const equals = require('./_equality-checker');
+const func = levenshteinDistance;
 
 // Test case 1
 const T1_str1 = '';
 const T1_str2 = '';
 const T1_expected = 0;
-const T1_output = levenshteinDistance(T1_str1, T1_str2);
+const T1_output = func(T1_str1, T1_str2);
 console.log(
   equals(T1_output, T1_expected)
     ? 'TEST 1 PASSED'
@@ -85,7 +86,7 @@ console.log(
 const T2_str1 = '';
 const T2_str2 = 'abc';
 const T2_expected = 3;
-const T2_output = levenshteinDistance(T2_str1, T2_str2);
+const T2_output = func(T2_str1, T2_str2);
 console.log(
   equals(T2_output, T2_expected)
     ? 'TEST 2 PASSED'
@@ -96,7 +97,7 @@ console.log(
 const T3_str1 = 'abc';
 const T3_str2 = 'abc';
 const T3_expected = 0;
-const T3_output = levenshteinDistance(T3_str1, T3_str2);
+const T3_output = func(T3_str1, T3_str2);
 console.log(
   equals(T3_output, T3_expected)
     ? 'TEST 3 PASSED'
@@ -107,7 +108,7 @@ console.log(
 const T4_str1 = 'abc';
 const T4_str2 = 'abx';
 const T4_expected = 1;
-const T4_output = levenshteinDistance(T4_str1, T4_str2);
+const T4_output = func(T4_str1, T4_str2);
 console.log(
   equals(T4_output, T4_expected)
     ? 'TEST 4 PASSED'
@@ -118,7 +119,7 @@ console.log(
 const T5_str1 = 'abc';
 const T5_str2 = 'abcx';
 const T5_expected = 1;
-const T5_output = levenshteinDistance(T5_str1, T5_str2);
+const T5_output = func(T5_str1, T5_str2);
 console.log(
   equals(T5_output, T5_expected)
     ? 'TEST 5 PASSED'
@@ -129,7 +130,7 @@ console.log(
 const T6_str1 = 'abc';
 const T6_str2 = 'yabcx';
 const T6_expected = 2;
-const T6_output = levenshteinDistance(T6_str1, T6_str2);
+const T6_output = func(T6_str1, T6_str2);
 console.log(
   equals(T6_output, T6_expected)
     ? 'TEST 6 PASSED'
@@ -140,7 +141,7 @@ console.log(
 const T7_str1 = 'algoexpert';
 const T7_str2 = 'algozexpert';
 const T7_expected = 1;
-const T7_output = levenshteinDistance(T7_str1, T7_str2);
+const T7_output = func(T7_str1, T7_str2);
 console.log(
   equals(T7_output, T7_expected)
     ? 'TEST 7 PASSED'
@@ -151,7 +152,7 @@ console.log(
 const T8_str1 = 'abcdefghij';
 const T8_str2 = '1234567890';
 const T8_expected = 10;
-const T8_output = levenshteinDistance(T8_str1, T8_str2);
+const T8_output = func(T8_str1, T8_str2);
 console.log(
   equals(T8_output, T8_expected)
     ? 'TEST 8 PASSED'
@@ -162,7 +163,7 @@ console.log(
 const T9_str1 = 'abcdefghij';
 const T9_str2 = 'a234567890';
 const T9_expected = 9;
-const T9_output = levenshteinDistance(T9_str1, T9_str2);
+const T9_output = func(T9_str1, T9_str2);
 console.log(
   equals(T9_output, T9_expected)
     ? 'TEST 9 PASSED'
@@ -173,7 +174,7 @@ console.log(
 const T10_str1 = 'biting';
 const T10_str2 = 'mitten';
 const T10_expected = 4;
-const T10_output = levenshteinDistance(T10_str1, T10_str2);
+const T10_output = func(T10_str1, T10_str2);
 console.log(
   equals(T10_output, T10_expected)
     ? 'TEST 10 PASSED'
@@ -184,7 +185,7 @@ console.log(
 const T11_str1 = 'cereal';
 const T11_str2 = 'saturday';
 const T11_expected = 6;
-const T11_output = levenshteinDistance(T11_str1, T11_str2);
+const T11_output = func(T11_str1, T11_str2);
 console.log(
   equals(T11_output, T11_expected)
     ? 'TEST 11 PASSED'
@@ -195,7 +196,7 @@ console.log(
 const T12_str1 = 'cereal';
 const T12_str2 = 'saturdzz';
 const T12_expected = 7;
-const T12_output = levenshteinDistance(T12_str1, T12_str2);
+const T12_output = func(T12_str1, T12_str2);
 console.log(
   equals(T12_output, T12_expected)
     ? 'TEST 12 PASSED'
@@ -206,7 +207,7 @@ console.log(
 const T13_str1 = 'abbbbbbbbb';
 const T13_str2 = 'bbbbbbbbba';
 const T13_expected = 2;
-const T13_output = levenshteinDistance(T13_str1, T13_str2);
+const T13_output = func(T13_str1, T13_str2);
 console.log(
   equals(T13_output, T13_expected)
     ? 'TEST 13 PASSED'
@@ -217,7 +218,7 @@ console.log(
 const T14_str1 = 'abc';
 const T14_str2 = 'yabd';
 const T14_expected = 2;
-const T14_output = levenshteinDistance(T14_str1, T14_str2);
+const T14_output = func(T14_str1, T14_str2);
 console.log(
   equals(T14_output, T14_expected)
     ? 'TEST 14 PASSED'
@@ -228,7 +229,7 @@ console.log(
 const T15_str1 = 'xabc';
 const T15_str2 = 'abcx';
 const T15_expected = 2;
-const T15_output = levenshteinDistance(T15_str1, T15_str2);
+const T15_output = func(T15_str1, T15_str2);
 console.log(
   equals(T15_output, T15_expected)
     ? 'TEST 15 PASSED'

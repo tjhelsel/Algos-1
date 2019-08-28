@@ -113,6 +113,7 @@ function solution_2 (boardSize, bishopTuples) {
 // TEST CASES
 
 const equals = require('./_equality-checker');
+const func = xrayBishops;
 
 // Test case 1
 const T1_boardSize = 5;
@@ -123,7 +124,7 @@ const T1_bishopTuples = [
   [4, 0],
 ];
 const T1_expected = 2;
-const T1_output = xrayBishops(T1_boardSize, T1_bishopTuples);
+const T1_output = func(T1_boardSize, T1_bishopTuples);
 console.log(
   equals(T1_output, T1_expected)
     ? 'TEST 1 PASSED'
@@ -144,7 +145,7 @@ const T2_bishopTuples = [
   [7, 6],
 ];
 const T2_expected = 12;
-const T2_output = xrayBishops(T2_boardSize, T2_bishopTuples);
+const T2_output = func(T2_boardSize, T2_bishopTuples);
 console.log(
   equals(T2_output, T2_expected)
     ? 'TEST 2 PASSED'
@@ -165,7 +166,7 @@ const T3_bishopTuples = [
   [2, 2],
 ];
 const T3_expected = 10;
-const T3_output = xrayBishops(T3_boardSize, T3_bishopTuples);
+const T3_output = func(T3_boardSize, T3_bishopTuples);
 console.log(
   equals(T3_output, T3_expected)
     ? 'TEST 3 PASSED'
