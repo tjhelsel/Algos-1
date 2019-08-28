@@ -18,12 +18,9 @@ const generateMatrix = solution_1;
 function solution_1 (n) {
 
   // SOLUTION 1 [O(n^2) time, O(n^2) space]:
-  // edge case: if n = 0, return empty array. otherwise, first, construct n^2 matrix populated with null. then, initialize currentPos at [0, 0] and dir as 'R'.
-  // iterate through the matrix with a for loop with i increasing from 1 to n^2. go through the matrix, replacing null values with i. head in the current dir,
-  // until reaching edge of matrix or an already visited node (value !== null), and change directions.
-
-  // EDGE CASE: n = 0
-  if (n === 0) return [];
+  // first, construct n^2 matrix populated with null. then, initialize currentPos at [0, 0] and dir as 'R'. iterate through the matrix with a for loop with i
+  // increasing from 1 to n^2. go through the matrix, replacing null values with i. head in the current dir, until reaching edge of matrix or an already
+  // visited node (value !== null), and change directions.
 
   // CONSTRUCT MATRIX
   const row = new Array(n).fill(null);
