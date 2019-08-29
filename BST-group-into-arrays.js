@@ -14,6 +14,9 @@
 
 // Note: The BST class with constructor and "insert" method are already provided. The code for this comes from AlgoExpert.
 
+// SWITCHING BETWEEN SOLUTIONS:
+// const NAME_OF_ALGO_HERE = solution_1;
+
 class BST {
   constructor(value) {
     this.value = value;
