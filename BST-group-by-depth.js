@@ -1,6 +1,6 @@
-// SOURCE: A friend tells me that this problem was asked by Bloomberg.
+// SOURCE: A friend was telling me verbally about a question he was asked by Bloomberg. I misinterpreted the question and thought he meant the following. I later learned that he meant something else, which is documented in this repo as BST-group-by-height.js.
 
-// Given a Binary Search Tree, implement a method called groupIntoArrays that returns an array of "groups", where a "group" is itself an array of all the node values in the BST at a given depth. The groups should appear in the order starting with the deepest nodes, and ending with a group containing only the root.
+// Given a Binary Search Tree, implement a method called groupByDepth that returns an array of all the nodes organized into "groups", where a "group" is itself an array of all the node values in the BST at a given depth. The groups should appear in the order starting with the deepest nodes, and ending with a group containing only the root.
 
 // For example, given the following BST:
 
@@ -13,9 +13,6 @@
 // Return [ [35, 45, 55, 65], [40, 60], [50] ].
 
 // Note: The BST class with constructor and "insert" method are already provided. The code for this comes from AlgoExpert.
-
-// SWITCHING BETWEEN SOLUTIONS:
-// const NAME_OF_ALGO_HERE = solution_1;
 
 class BST {
   constructor(value) {
@@ -41,37 +38,40 @@ class BST {
     return this;
   }
 
-  groupIntoArrays() {
+  // SWITCHING BETWEEN SOLUTIONS:
+  // const NAME_OF_ALGO_HERE = solution_1;
 
-    // initializations
+  groupByDepth() {
+
+    // INITIALIZATIONS
     const output = [];              // the final array to be returned
     let currentGroup = [];          // an array of all nodes at a given depth
     let currentNode, currentDepth;  // tracker variables
     let previousDepth = 0;          // tracker variable; used to detect change in depth. initialize at 0
     const queue = [[this, 0]];      // initialize queue with root node. all elements in queue are in this form: [node, depth]
 
-    // while loop to handle queue
+    // WHILE LOOP TO HANDLE QUEUE
     while (queue.length) {
 
-      // update tracker variables and queue
+      // UPDATE TRACKER VARIABLES AND QUEUE
       [currentNode, currentDepth] = queue.shift();
 
-      // handle end of group
+      // HANDLE END OF GROUP
       if (currentDepth !== previousDepth) {
         previousDepth = currentDepth;
         output.unshift(currentGroup);
         currentGroup = [];
       }
 
-      // add children to queue, if any
+      // ADD CHILDREN TO QUEUE, IF ANY
       if (currentNode.left !== null) queue.push([currentNode.left, currentDepth + 1]);
       if (currentNode.right !== null) queue.push([currentNode.right, currentDepth + 1]);
 
-      // process current node
+      // PROCESS CURRENT NODE
       currentGroup.push(currentNode.value);
     }
 
-    // process final group
+    // PROCESS FINAL GROUP
     output.unshift(currentGroup);
     return output;
   }
@@ -86,7 +86,38 @@ let input, output, expected;
 //const func = FUNCTION_NAME_HERE;
 
 // Test case 1
-input = new BST(50)
+input = {
+  BST: new BST(40)
+    .insert(20)
+    .insert(15)
+    .insert(10)
+    .insert(5)
+    .insert(30)
+    .insert(25)
+    .insert(35)
+    .insert(45),
+  args: {
+
+  },
+};
+expected = [
+  [5],
+  [10, 25, 35],
+  [15, 30],
+  [20, 45],
+  [40],
+];
+output = input.BST.groupByDepth();
+console.log(
+  equals(output, expected)
+    ? `TEST ${testNum} PASSED`
+    : `TEST ${testNum} FAILED: EXPECTED ${expected} BUT GOT ${output}`
+);
+testNum++;
+
+// Test case 2
+input = {
+  BST: new BST(50)
   .insert(40)
   .insert(60)
   .insert(35)
@@ -98,7 +129,11 @@ input = new BST(50)
   .insert(80)
   .insert(20)
   .insert(34)
-  .insert(90);
+  .insert(90),
+  args: {
+    
+  },
+};
 expected = [
   [20, 34, 90],
   [33, 80],
@@ -107,7 +142,7 @@ expected = [
   [40, 60],
   [50],
 ];
-output = input.groupIntoArrays();
+output = input.BST.groupByDepth();
 console.log(
   equals(output, expected)
     ? `TEST ${testNum} PASSED`

@@ -24,8 +24,8 @@
 
 function findDuplicate (nums) {
 
-  // SOLUTION 1 [O(???) time, O(???) space]:
-  // talk about how this is related to the algo for finding the entry point of a loop in a looped LL ("tortoise and hare")!
+  // SOLUTION 1 [O(n) time, O(1) space]:
+  // this is related to the algo for finding the entry point of a loop in a looped LL ("tortoise and hare")!
   // not only is that method useful for detecting whether a loop exists, but you can also use it to find the entry point of a loop!
 
   // the idea is to start with the first number in the array, and use its value to determine which index position to jump to next... this is how this array
