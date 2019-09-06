@@ -63,8 +63,8 @@ function splitBill (payments, total) {
 
 // TEST CASES
 
-const equals = require('./_equality-checker');
-let testNum = 1;
+const test = require('./_test');
+const testNum = [1];
 let input, output, expected;
 const func = splitBill;
 
@@ -80,13 +80,7 @@ expected = {
   8: { 9: 3 },
 };
 output = func(...Object.values(input));
-
-console.log(
-  equals(output, expected)
-    ? `TEST ${testNum} PASSED`
-    : `TEST ${testNum} FAILED: EXPECTED ${expected} BUT GOT ${output}`
-);
-testNum++;
+test(output, expected, testNum);
 
 // Test case 2
 input = {
@@ -98,13 +92,7 @@ expected = {
   4: { 1: 11 },
 };
 output = func(...Object.values(input));
-
-console.log(
-  equals(output, expected)
-    ? `TEST ${testNum} PASSED`
-    : `TEST ${testNum} FAILED: EXPECTED ${expected} BUT GOT ${output}`
-);
-testNum++;
+test(output, expected, testNum);
 
 // Test case 3
 input = {
@@ -118,10 +106,4 @@ expected = {
   7: { 5: 2 },
 };
 output = func(...Object.values(input));
-
-console.log(
-  equals(output, expected)
-    ? `TEST ${testNum} PASSED`
-    : `TEST ${testNum} FAILED: EXPECTED ${expected} BUT GOT ${output}`
-);
-testNum++;
+test(output, expected, testNum);

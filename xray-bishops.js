@@ -112,8 +112,8 @@ function solution_2 (boardSize, bishopTuples) {
 
 // TEST CASES
 
-const equals = require('./_equality-checker');
-let testNum = 1;
+const test = require('./_test');
+const testNum = [1];
 let input, output, expected;
 const func = xrayBishops;
 
@@ -129,12 +129,7 @@ input = {
 };
 expected = 2;
 output = func(...Object.values(input));
-console.log(
-  equals(output, expected)
-    ? `TEST ${testNum} PASSED`
-    : `TEST ${testNum} FAILED: EXPECTED ${expected} BUT GOT ${output}`
-);
-testNum++;
+test(output, expected, testNum);
 
 // Test case 2
 input = {
@@ -153,12 +148,7 @@ input = {
 };
 expected = 12;
 output = func(...Object.values(input));
-console.log(
-  equals(output, expected)
-    ? `TEST ${testNum} PASSED`
-    : `TEST ${testNum} FAILED: EXPECTED ${expected} BUT GOT ${output}`
-);
-testNum++;
+test(output, expected, testNum);
 
 // Test case 3
 input = {
@@ -177,9 +167,4 @@ input = {
 };
 expected = 10;
 output = func(...Object.values(input));
-console.log(
-  equals(output, expected)
-    ? `TEST ${testNum} PASSED`
-    : `TEST ${testNum} FAILED: EXPECTED ${expected} BUT GOT ${output}`
-);
-testNum++;
+test(output, expected, testNum);

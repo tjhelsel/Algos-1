@@ -80,8 +80,8 @@ class BST {
 
 // TEST CASES
 
-const equals = require('./_equality-checker');
-let testNum = 1;
+const test = require('./_test');
+const testNum = [1];
 let input, output, expected;
 //const func = FUNCTION_NAME_HERE;
 
@@ -108,12 +108,7 @@ expected = [
   [40],
 ];
 output = input.BST.groupByDepth();
-console.log(
-  equals(output, expected)
-    ? `TEST ${testNum} PASSED`
-    : `TEST ${testNum} FAILED: EXPECTED ${expected} BUT GOT ${output}`
-);
-testNum++;
+test(output, expected, testNum);
 
 // Test case 2
 input = {
@@ -143,9 +138,4 @@ expected = [
   [50],
 ];
 output = input.BST.groupByDepth();
-console.log(
-  equals(output, expected)
-    ? `TEST ${testNum} PASSED`
-    : `TEST ${testNum} FAILED: EXPECTED ${expected} BUT GOT ${output}`
-);
-testNum++;
+test(output, expected, testNum);

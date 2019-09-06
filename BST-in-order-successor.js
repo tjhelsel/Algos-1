@@ -67,8 +67,8 @@ class BST {
 
 // TEST CASES
 
-const equals = require('./_equality-checker');
-let testNum = 1;
+const test = require('./_test');
+const testNum = [1];
 let input, output, expected;
 //const func = FUNCTION_NAME_HERE;
 
@@ -92,10 +92,4 @@ input = {
 };
 expected = 5;
 output = input.BST.inOrderSuccessor(input.BST.right.left.left).value;   // i.e. input is node with value 4
-
-console.log(
-  equals(output, expected)
-    ? `TEST ${testNum} PASSED`
-    : `TEST ${testNum} FAILED: EXPECTED ${expected} BUT GOT ${output}`
-);
-testNum++;
+test(output, expected, testNum);

@@ -72,15 +72,7 @@ class BST {
 
 // TEST CASES
 
-const equals = require('./_equality-checker');
-const test = (output, expected, testNum) => {
-  console.log(
-    equals(output, expected)
-      ? `TEST ${testNum[0]} PASSED`
-      : `TEST ${testNum[0]} FAILED: EXPECTED ${expected} BUT GOT ${output}`
-  );
-  testNum[0]++;
-};
+const test = require('./_test');
 const testNum = [1];
 let input, output, expected;
 //const func = FUNCTION_NAME_HERE;

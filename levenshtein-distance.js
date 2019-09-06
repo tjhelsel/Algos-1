@@ -68,8 +68,8 @@ function solution_1 (str1, str2) {
 
 // TEST CASES
 
-const equals = require('./_equality-checker');
-let testNum = 1;
+const test = require('./_test');
+const testNum = [1];
 let input, output, expected;
 const func = levenshteinDistance;
 
@@ -80,12 +80,7 @@ input = {
 };
 expected = 0;
 output = func(...Object.values(input));
-console.log(
-  equals(output, expected)
-    ? `TEST ${testNum} PASSED`
-    : `TEST ${testNum} FAILED: EXPECTED ${expected} BUT GOT ${output}`
-);
-testNum++;
+test(output, expected, testNum);
 
 // Test case 2
 input = {
@@ -94,12 +89,7 @@ input = {
 };
 expected = 3;
 output = func(...Object.values(input));
-console.log(
-  equals(output, expected)
-    ? `TEST ${testNum} PASSED`
-    : `TEST ${testNum} FAILED: EXPECTED ${expected} BUT GOT ${output}`
-);
-testNum++;
+test(output, expected, testNum);
 
 // Test case 3
 input = {
@@ -108,12 +98,7 @@ input = {
 };
 expected = 0;
 output = func(...Object.values(input));
-console.log(
-  equals(output, expected)
-    ? `TEST ${testNum} PASSED`
-    : `TEST ${testNum} FAILED: EXPECTED ${expected} BUT GOT ${output}`
-);
-testNum++;
+test(output, expected, testNum);
 
 // Test case 4
 input = {
@@ -122,12 +107,7 @@ input = {
 };
 expected = 1;
 output = func(...Object.values(input));
-console.log(
-  equals(output, expected)
-    ? `TEST ${testNum} PASSED`
-    : `TEST ${testNum} FAILED: EXPECTED ${expected} BUT GOT ${output}`
-);
-testNum++;
+test(output, expected, testNum);
 
 // Test case 5
 input = {
@@ -136,12 +116,7 @@ input = {
 };
 expected = 1;
 output = func(...Object.values(input));
-console.log(
-  equals(output, expected)
-    ? `TEST ${testNum} PASSED`
-    : `TEST ${testNum} FAILED: EXPECTED ${expected} BUT GOT ${output}`
-);
-testNum++;
+test(output, expected, testNum);
 
 // Test case 6
 input = {
@@ -150,12 +125,7 @@ input = {
 };
 expected = 2;
 output = func(...Object.values(input));
-console.log(
-  equals(output, expected)
-    ? `TEST ${testNum} PASSED`
-    : `TEST ${testNum} FAILED: EXPECTED ${expected} BUT GOT ${output}`
-);
-testNum++;
+test(output, expected, testNum);
 
 // Test case 7
 input = {
@@ -164,12 +134,7 @@ input = {
 };
 expected = 1;
 output = func(...Object.values(input));
-console.log(
-  equals(output, expected)
-    ? `TEST ${testNum} PASSED`
-    : `TEST ${testNum} FAILED: EXPECTED ${expected} BUT GOT ${output}`
-);
-testNum++;
+test(output, expected, testNum);
 
 // Test case 8
 input = {
@@ -178,12 +143,7 @@ input = {
 };
 expected = 10;
 output = func(...Object.values(input));
-console.log(
-  equals(output, expected)
-    ? `TEST ${testNum} PASSED`
-    : `TEST ${testNum} FAILED: EXPECTED ${expected} BUT GOT ${output}`
-);
-testNum++;
+test(output, expected, testNum);
 
 // Test case 9
 input = {
@@ -192,12 +152,7 @@ input = {
 };
 expected = 9;
 output = func(...Object.values(input));
-console.log(
-  equals(output, expected)
-    ? `TEST ${testNum} PASSED`
-    : `TEST ${testNum} FAILED: EXPECTED ${expected} BUT GOT ${output}`
-);
-testNum++;
+test(output, expected, testNum);
 
 // Test case 10
 input = {
@@ -206,12 +161,7 @@ input = {
 };
 expected = 4;
 output = func(...Object.values(input));
-console.log(
-  equals(output, expected)
-    ? `TEST ${testNum} PASSED`
-    : `TEST ${testNum} FAILED: EXPECTED ${expected} BUT GOT ${output}`
-);
-testNum++;
+test(output, expected, testNum);
 
 // Test case 11
 input = {
@@ -220,12 +170,7 @@ input = {
 };
 expected = 6;
 output = func(...Object.values(input));
-console.log(
-  equals(output, expected)
-    ? `TEST ${testNum} PASSED`
-    : `TEST ${testNum} FAILED: EXPECTED ${expected} BUT GOT ${output}`
-);
-testNum++;
+test(output, expected, testNum);
 
 // Test case 12
 input = {
@@ -234,12 +179,7 @@ input = {
 };
 expected = 7;
 output = func(...Object.values(input));
-console.log(
-  equals(output, expected)
-    ? `TEST ${testNum} PASSED`
-    : `TEST ${testNum} FAILED: EXPECTED ${expected} BUT GOT ${output}`
-);
-testNum++;
+test(output, expected, testNum);
 
 // Test case 13
 input = {
@@ -248,12 +188,7 @@ input = {
 };
 expected = 2;
 output = func(...Object.values(input));
-console.log(
-  equals(output, expected)
-    ? `TEST ${testNum} PASSED`
-    : `TEST ${testNum} FAILED: EXPECTED ${expected} BUT GOT ${output}`
-);
-testNum++;
+test(output, expected, testNum);
 
 // Test case 14
 input = {
@@ -262,12 +197,7 @@ input = {
 };
 expected = 2;
 output = func(...Object.values(input));
-console.log(
-  equals(output, expected)
-    ? `TEST ${testNum} PASSED`
-    : `TEST ${testNum} FAILED: EXPECTED ${expected} BUT GOT ${output}`
-);
-testNum++;
+test(output, expected, testNum);
 
 // Test case 15
 input = {
@@ -276,9 +206,4 @@ input = {
 };
 expected = 2;
 output = func(...Object.values(input));
-console.log(
-  equals(output, expected)
-    ? `TEST ${testNum} PASSED`
-    : `TEST ${testNum} FAILED: EXPECTED ${expected} BUT GOT ${output}`
-);
-testNum++;
+test(output, expected, testNum);

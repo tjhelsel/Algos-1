@@ -98,8 +98,8 @@ const sum = net => net.reduce((acc, currentInterval, i, arr) => {
 
 // TEST CASES
 
-const equals = require('./_equality-checker');
-let testNum = 1;
+const test = require('./_test');
+const testNum = [1];
 let input, output, expected;
 const func = canCompleteCircuit;
 
@@ -110,12 +110,7 @@ input = {
 };
 expected = 3;
 output = func(...Object.values(input));
-console.log(
-  equals(output, expected)
-    ? `TEST ${testNum} PASSED`
-    : `TEST ${testNum} FAILED: EXPECTED ${expected} BUT GOT ${output}`
-);
-testNum++;
+test(output, expected, testNum);
 
 // Test case 2
 input = {
@@ -124,22 +119,4 @@ input = {
 };
 expected = -1;
 output = func(...Object.values(input));
-console.log(
-  equals(output, expected)
-    ? `TEST ${testNum} PASSED`
-    : `TEST ${testNum} FAILED: EXPECTED ${expected} BUT GOT ${output}`
-);
-testNum++;
-
-// Test case 3
-// input = {
-//   ARG_1: 'INPUT_HERE',
-// };
-// expected = 'EXPECTED_HERE';
-// output = func(...Object.values(input));
-// console.log(
-//   equals(output, expected)
-//     ? `TEST ${testNum} PASSED`
-//     : `TEST ${testNum} FAILED: EXPECTED ${expected} BUT GOT ${output}`
-// );
-// testNum++;
+test(output, expected, testNum);
