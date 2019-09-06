@@ -20,15 +20,13 @@
 
 class BST {
   constructor(value) {
-    this.value = value === undefined ? null : value;  // in case new BST is instantiated with no value
+    this.value = value;
     this.left = null;
     this.right = null;
   }
 
   insert(value) {
-    if (this.value === null) {          // if BST was instantiated with no value, the first call of insert will insert the new value into root
-      this.value = value;
-    } else if (value < this.value) {
+    if (value < this.value) {
       if (this.left === null) {
         this.left = new BST(value);
       } else {
@@ -48,79 +46,26 @@ class BST {
   // const NAME_OF_ALGO_HERE = solution_1;
 
   groupByHeight() {
-
-    // SOLUTION 1 [O(n) time, O(n) space]:
-
-    // optionally create a copy of the tree if you can't mutate the original tree, using copyTree method (pre-order traversal). note that i had to
-    // modify the constructor and insert methods of the BST class slightly to achieve this... not sure if there's a better way. then, navigate the
-    // tree (or its copy) and add a 'height' property to each node. the height will be 0 if leaf, or else 1 greater than the larger height of its
-    // children. while navigating the tree, add the height information to a dictionary containing an array of all node values that fall under each
-    // possible height. finally, use the memo to generate the desired output: an array of values, grouped by node height, from lowest height to
-    // highest.
-
-    // COPY THE TREE (IF YOU DON'T WANT TO MUTATE ORIGINAL DATA) USING PRE-ORDER TRAVERSAL
-    const copy = this.copyTree();
-
-    // TURN THE VALUE OF EACH NODE INTO THAT NODE'S HEIGHT USING HELPER FUNCTION WITH POST-ORDER TRAVERSAL
-    const memo = copy.getMemoOfNodeHeights();
-
-    // USE TREE OF HEIGHT VALUES AND ORIGINAL TREE TO GENERATE ARRAY OF GROUPS BY HEIGHT
-    const output = [];
-    Object.keys(memo).forEach(key => output[Number(key)] = memo[key]);
-
-    return output;
-  }
-
-  // HELPER METHODS
-
-  copyTree(root) {    // root is an optional argument only intended to be used recursively
-    // the original call of copyTree will not have a root provided, so root will be a new BST
-    root = root || new BST();
-    
-    // pre-order traversal with callback being an insert of this.value into the root (i.e. the new BST)
-    if (!this.left && !this.right) {
-      root.insert(this.value);
-    } else if (!this.right) {
-      root.insert(this.value);
-      this.left.copyTree(root);
-    } else if (!this.left) {
-      root.insert(this.value);
-      this.right.copyTree(root);
-    } else {
-      root.insert(this.value);
-      this.left.copyTree(root);
-      this.right.copyTree(root);
-    }
-
-    // the root (i.e. the new BST) will be returned
-    return root;
-  }
-
-  getMemoOfNodeHeights(memo) {
-    // initialize memo
-    memo = memo || {};
-
-    // figure out current node's height and save information to current node's height property
-    if (!this.left && !this.right) {
-      this.height = 0;
-    } else if (!this.right) {
-      this.left.getMemoOfNodeHeights(memo);
-      this.height = this.left.height + 1;
-    } else if (!this.left) {
-      this.right.getMemoOfNodeHeights(memo);
-      this.height = this.right.height + 1;
-    } else {
-      this.left.getMemoOfNodeHeights(memo);
-      this.right.getMemoOfNodeHeights(memo);
-      this.height = Math.max(this.left.height, this.right.height) + 1;
-    }
-
-    // add current node's value to the appropriate height bucket in the memo
-    memo[this.height] = memo[this.height] || [];
-    memo[this.height].push(this.value);
-
-    // ultimately, return the memo
+    const [_, memo] = this.getHeightsOfNodes();
     return memo;
+  }
+
+  // HELPER FUNCTION
+  
+  getHeightsOfNodes(memo = []) {
+    let height;
+    if (!this.left && !this.right) {
+      height = 0;
+    } else if (!this.right) {
+      height = this.left.getHeightsOfNodes(memo)[0] + 1;
+    } else if (!this.left) {
+      height = this.right.getHeightsOfNodes(memo)[0] + 1;
+    } else {
+      height = Math.max(this.left.getHeightsOfNodes(memo)[0], this.right.getHeightsOfNodes(memo)[0]) + 1;
+    }
+    memo[height] = memo[height] || [];
+    memo[height].push(this.value);
+    return [height, memo];
   }
 
 }
@@ -128,7 +73,15 @@ class BST {
 // TEST CASES
 
 const equals = require('./_equality-checker');
-let testNum = 1;
+const test = (output, expected, testNum) => {
+  console.log(
+    equals(output, expected)
+      ? `TEST ${testNum[0]} PASSED`
+      : `TEST ${testNum[0]} FAILED: EXPECTED ${expected} BUT GOT ${output}`
+  );
+  testNum[0]++;
+};
+const testNum = [1];
 let input, output, expected;
 //const func = FUNCTION_NAME_HERE;
 
@@ -155,12 +108,7 @@ expected = [
   [40],
 ];
 output = input.BST.groupByHeight();
-console.log(
-  equals(output, expected)
-    ? `TEST ${testNum} PASSED`
-    : `TEST ${testNum} FAILED: EXPECTED ${expected} BUT GOT ${output}`
-);
-testNum++;
+test(output, expected, testNum);
 
 // Test case 2
 input = {
@@ -190,9 +138,4 @@ expected = [
   [50],
 ];
 output = input.BST.groupByHeight();
-console.log(
-  equals(output, expected)
-    ? `TEST ${testNum} PASSED`
-    : `TEST ${testNum} FAILED: EXPECTED ${expected} BUT GOT ${output}`
-);
-testNum++;
+test(output, expected, testNum);
