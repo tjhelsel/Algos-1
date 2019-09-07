@@ -49,9 +49,9 @@
 // Therefore, you can't travel around the circuit once no matter where you start.
 
 // SWITCHING BETWEEN SOLUTIONS:
-// const NAME_OF_ALGO_HERE = solution_1;
+const canCompleteCircuit = solution_1;
 
-function canCompleteCircuit (gas, cost) {
+function solution_1 (gas, cost) {
 
   // SOLUTION 1 [O(?) time, O(?) space]:
   // description
@@ -67,8 +67,10 @@ function canCompleteCircuit (gas, cost) {
     net = sum(net);
   }
 
-  return net[0] >= 0 ? net[1] : -1;
+  return net[0][0] >= 0 ? net[0][1] : -1;
 }
+
+// SOLUTION 1 HELPER FUNCTIONS
 
 const consolidate = net => net.reduce((arr, currentInterval) => {
   if (!arr.length || (arr[arr.length - 1][0] >= 0) !== (currentInterval[0] >= 0)) {
@@ -88,13 +90,19 @@ const rotate = net => {
 
 const sum = net => net.reduce((acc, currentInterval, i, arr) => {
   if (i % 2 !== 0) {
-    acc.push(i === arr.length - 1
-      ? currentInterval
-      : [currentInterval[0] + arr[i + 1][0], i]
-    );
+    acc.push([currentInterval[0] + arr[i - 1][0], arr[i - 1][1]]);
   }
+  if (i & 2 === 0 && i === arr.length - 1) acc.push(currentInterval);
   return acc;
 }, []);
+
+function solution_2 (gas, cost) {
+
+  // SOLUTION 2 [O(?) time, O(?) space]:
+  // description
+
+  
+}
 
 // TEST CASES
 

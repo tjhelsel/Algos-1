@@ -15,9 +15,9 @@
 // };
 
 // SWITCHING BETWEEN SOLUTIONS:
-// const NAME_OF_ALGO_HERE = solution_1;
+const splitBill = solution_1;
 
-function splitBill (payments, total) {
+function solution_1 (payments, total) {
 
   // SOLUTION 1 [O(n) time, O(n) space]:
   // organize separate arrays of creditors and debtors such that each person who owes or is owed is represented as a tuple, with first element as index position,

@@ -11,7 +11,7 @@
 // SWITCHING BETWEEN SOLUTIONS:
 const mergeOverlappingIntervals = solution_2;
 
-function solution_1(intervals) {
+function solution_1 (intervals) {
 
   // SOLUTION 1 [O(n log n) time, O(n) space]:
   // The biggest time sink comes from the fact that we want to sort the intervals by their first number, so we can "snowball" through them.

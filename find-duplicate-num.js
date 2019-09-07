@@ -20,9 +20,9 @@
 // There is only one duplicate number in the array, but it could be repeated more than once.
 
 // SWITCHING BETWEEN SOLUTIONS:
-// const NAME_OF_ALGO_HERE = solution_1;
+const findDuplicate = solution_1;
 
-function findDuplicate (nums) {
+function solution_1 (nums) {
 
   // SOLUTION 1 [O(n) time, O(1) space]:
   // this is related to the algo for finding the entry point of a loop in a looped LL ("tortoise and hare")!
