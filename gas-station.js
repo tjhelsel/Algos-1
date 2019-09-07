@@ -1,6 +1,3 @@
-// !!! NEED TO DEBUG SOLUTION #1 AND ADD SOLUTION #2 USING MODIFIED KADANE'S ALGORITHM!!!
-
-
 // SOURCE: LEETCODE https://leetcode.com/problems/gas-station/
 
 // There are N gas stations along a circular route, where the amount of gas at station i is gas[i].
@@ -49,17 +46,19 @@
 // Therefore, you can't travel around the circuit once no matter where you start.
 
 // SWITCHING BETWEEN SOLUTIONS:
-const canCompleteCircuit = solution_1;
+const canCompleteCircuit = solution_2;
 
 function solution_1 (gas, cost) {
 
-  // SOLUTION 1 [O(?) time, O(?) space]:
+  // SOLUTION 1 [O(n log n) time, O(n) space]:
   // description
 
   let net = [];
   for (let i = 0; i < gas.length; i++) {
     net[i] = [gas[i] - cost[i], i];
   }
+
+  console.log('INITIAL NET:', net);
 
   while (net.length > 1) {
     net = consolidate(net);
@@ -98,10 +97,32 @@ const sum = net => net.reduce((acc, currentInterval, i, arr) => {
 
 function solution_2 (gas, cost) {
 
-  // SOLUTION 2 [O(?) time, O(?) space]:
-  // description
+  // SOLUTION 2 [O(n) time, O(1) space]:
+  // this method is inspired by kadane's algorithm.
 
-  
+  // INITIALIZATIONS
+  let runningTotal = 0;   // we can also check if the sum of net values is negative - but this requires 2 passes. for 1 pass, track running total as you go
+  let candidateIdx = -1;  // while candidateIdx is -1, we have not found a valid positive net value to start from
+  let runningTotalFromI;  // while candidateIdx is not -1, this tracks the running total of all net values from i onward
+
+  // ITERATE THROUGH i = 0 ... gas.length, CHECKING FOR CANDIDATE INDEX VALUES FROM WHICH TO BEGIN OUR JOURNEY
+  for (let i = 0; i < gas.length; i++) {
+    const currentNet = gas[i] - cost[i];                          // by deriving currentNet directly from gas[i] - cost[i] we don't need extra space for a net array
+    
+    if (candidateIdx === -1 && currentNet >= 0) {                 // if not currently tracking a candidate, the first i with a non-negative net becomes a candidate
+      candidateIdx = i;
+      runningTotalFromI = 0;                                      // runningTotalFromI should be reset to 0 when a new candidate is found
+    }
+    
+    // NOTE: THE NEXT 2 LINES ONLY MATTER IF CURRENTLY TRACKING A candidateIdx. HOWEVER, EVEN IF candidateIdx === -1, THIS CODE WON'T BREAK THE ALGO.
+    runningTotalFromI += currentNet;                              // add current net value to runningTotalFromI
+    if (runningTotalFromI < 0) candidateIdx = -1;                 // check if runningTotalFromI has dipped below 0. if so, reset candidateIdx to -1
+    
+    runningTotal += currentNet;                                   // increase runningTotal
+  }
+
+  // IF SUM OF ALL NET VALUES IS NEGATIVE, RETURN -1. ELSE, RETURN candidateIdx (WHICH IS EITHER -1 IF NO SOLUTION, OR A VALID CANDIDATE)
+  return runningTotal < 0 ? -1 : candidateIdx;
 }
 
 // TEST CASES
@@ -124,6 +145,15 @@ test(output, expected, testNum);
 input = {
   gas: [2, 3, 4],
   cost: [3, 4, 3],
+};
+expected = -1;
+output = func(...Object.values(input));
+test(output, expected, testNum);
+
+// Test case 3
+input = {
+  gas: [4, 5, 2, 6, 5, 3],
+  cost: [3, 2, 7, 3, 2, 9],
 };
 expected = -1;
 output = func(...Object.values(input));
