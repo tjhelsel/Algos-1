@@ -46,9 +46,8 @@ function solution_1 (nums) {
   // separately check if n is ever found, and if so, set it to true. ultimately, if the final for loop is exited, then we
   // return n + 1 if n was represented, and n if not.
 
-  // EDGE CASES - input has length of 0 or 1:
+  // EDGE CASES - input has length of 0:
   if (!nums.length) return 1;
-  if (nums.length === 1) return nums[0] === 1 ? 2 : 1;
 
   // EDGE CASE TRACKER: IF INDICES 1 ... n IN FINAL ARRAY ARE NEGATIVE, NEED TO SEE IF
   // n WAS EVER REPRESENTED IN THE ARRAY (WHERE n === nums.length)
@@ -176,11 +175,50 @@ console.log(
 );
 testNum++;
 
-// Test case 7
+// Test case 8
 input = {
   nums: [0, -1, 3, 1],
 };
 expected = 2;
+output = func(...Object.values(input));
+console.log(
+  equals(output, expected)
+    ? `TEST ${testNum} PASSED`
+    : `TEST ${testNum} FAILED: EXPECTED ${expected} BUT GOT ${output}`
+);
+testNum++;
+
+// Test case 9
+input = {
+  nums: [],
+};
+expected = 1;
+output = func(...Object.values(input));
+console.log(
+  equals(output, expected)
+    ? `TEST ${testNum} PASSED`
+    : `TEST ${testNum} FAILED: EXPECTED ${expected} BUT GOT ${output}`
+);
+testNum++;
+
+// Test case 10
+input = {
+  nums: [1],
+};
+expected = 2;
+output = func(...Object.values(input));
+console.log(
+  equals(output, expected)
+    ? `TEST ${testNum} PASSED`
+    : `TEST ${testNum} FAILED: EXPECTED ${expected} BUT GOT ${output}`
+);
+testNum++;
+
+// Test case 11
+input = {
+  nums: [2],
+};
+expected = 1;
 output = func(...Object.values(input));
 console.log(
   equals(output, expected)
