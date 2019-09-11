@@ -75,7 +75,7 @@ function solution_1 (nums) {
   }
 
   // IF THE FINAL FOR LOOP EXITS, WE ONLY NEED TO SEE IF n WAS REPRESENTED. IF NOT, THAT'S THE ANSWER. IF SO, ADD 1
-  return didArrayLengthAppear ? nums.length + 1 : nums.length;
+  return isNRepresented ? nums.length + 1 : nums.length;
 }
 
 // TEST CASES
