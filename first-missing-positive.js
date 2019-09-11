@@ -22,7 +22,7 @@ const firstMissingPositive = solution_1;
 
 function solution_1 (nums) {
 
-  // SOLUTION 1 [O(?) time, O(?) space]:
+  // SOLUTION 1 [O(n) time, O(1) space]:
   // this uses a similar to trick to the problem of finding the sole unrepresented number in an array that otherwise
   // contains numbers from 1 to some n (with all other numbers being represented any number of times). there, the trick
   // is to iterate through the array, and for each element, search that index value, and turn the corresponding element
