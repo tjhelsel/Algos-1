@@ -1,3 +1,6 @@
+// NEED TO ADD O(n^2) METHOD!!!
+
+
 // SOURCE: ALGOEXPERT
 
 // Given a non-empty array of integers, write a function that returns an array of length 2. The first element in the output array should be an
