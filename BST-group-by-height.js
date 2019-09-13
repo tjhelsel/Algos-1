@@ -16,7 +16,7 @@
 
 // Return [ [5, 25, 35, 45], [10, 30], [15], [20], [40] ] because those groups have heights 0, 1, 2, 3, 4.
 
-// Note: The BST class with constructor and "insert" method are already provided. This is a MODIFIED VERSION of code from AlgoExpert.
+// Note: The BST class with constructor and "insert" method are already provided. The code for this comes from AlgoExpert.
 
 class BST {
   constructor(value) {
