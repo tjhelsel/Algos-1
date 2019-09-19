@@ -11,7 +11,7 @@
 // SWITCHING BETWEEN SOLUTIONS:
 const maxSumIncreasingSubsequence = solution_2;
 
-function solution_1 (array) {
+function solution_2 (array) {
 
   // SOLUTION 1 [O(2^n) time, O(2^n) space]:
   // as you iterate through nums in the array, find all subsequences that could possibly end with num. thus you need to handle 2 possibilities: (1) num stands alone, or (2) num is tacked on
