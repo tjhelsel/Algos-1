@@ -76,7 +76,7 @@ function solution_1 (nums) {
 
 const test = require('./_test');
 const testNum = [1];
-let input, output, expected;
+let input, expected;
 const func = findDuplicate;
 const lowestTest = 0 || 0;
 const highestTest = 0 || Infinity;
@@ -86,21 +86,18 @@ input = {
   nums: [1, 3, 4, 2, 2],
 };
 expected = 2;
-output = func(...Object.values(input));
-test(output, expected, testNum, lowestTest, highestTest);
+test(func, input, expected, testNum, lowestTest, highestTest);
 
 // Test case 2
 input = {
   nums: [3, 1, 3, 4, 2],
 };
 expected = 3;
-output = func(...Object.values(input));
-test(output, expected, testNum, lowestTest, highestTest);
+test(func, input, expected, testNum, lowestTest, highestTest);
 
 // Test case 3
 input = {
   nums: [9, 8, 5, 11, 13, 4, 16, 19, 6, 3, 14, 12, 17, 7, 2, 1, 15, 10, 4, 18, 20],
 };
 expected = 4;
-output = func(...Object.values(input));
-test(output, expected, testNum, lowestTest, highestTest);
+test(func, input, expected, testNum, lowestTest, highestTest);

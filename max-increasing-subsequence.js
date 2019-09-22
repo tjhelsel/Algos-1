@@ -99,7 +99,7 @@ function solution_2 (array) {
 
 const test = require('./_test');
 const testNum = [1];
-let input, output, expected;
+let input, expected;
 const func = maxSumIncreasingSubsequence;
 const lowestTest = 0 || 0;
 const highestTest = 0 || Infinity;
@@ -109,69 +109,60 @@ input = {
   array: [1],
 };
 expected = [1, [1]];
-output = func(...Object.values(input));
-test(output, expected, testNum, lowestTest, highestTest);
+test(func, input, expected, testNum, lowestTest, highestTest);
 
 // Test case 2
 input = {
   array: [-1],
 };
 expected = [-1, [-1]];
-output = func(...Object.values(input));
-test(output, expected, testNum, lowestTest, highestTest);
+test(func, input, expected, testNum, lowestTest, highestTest);
 
 // Test case 3
 input = {
   array: [-1, 1],
 };
 expected = [1, [1]];
-output = func(...Object.values(input));
-test(output, expected, testNum, lowestTest, highestTest);
+test(func, input, expected, testNum, lowestTest, highestTest);
 
 // Test case 4
 input = {
   array: [5, 4, 3, 2, 1],
 };
 expected = [5, [5]];
-output = func(...Object.values(input));
-test(output, expected, testNum, lowestTest, highestTest);
+test(func, input, expected, testNum, lowestTest, highestTest);
 
 // Test case 5
 input = {
   array: [1, 2, 3, 4, 5],
 };
 expected = [15, [1, 2, 3, 4, 5]];
-output = func(...Object.values(input));
-test(output, expected, testNum, lowestTest, highestTest);
+test(func, input, expected, testNum, lowestTest, highestTest);
 
 // Test case 6
 input = {
   array: [-5, -4, -3, -2, -1],
 };
 expected = [-1, [-1]];
-output = func(...Object.values(input));
-test(output, expected, testNum, lowestTest, highestTest);
+test(func, input, expected, testNum, lowestTest, highestTest);
 
 // Test case 7
 input = {
   array: [10, 70, 20, 30, 50, 11, 30],
 };
 expected = [110, [10, 20, 30, 50]];
-output = func(...Object.values(input));
-test(output, expected, testNum, lowestTest, highestTest);
+test(func, input, expected, testNum, lowestTest, highestTest);
 
 // Test case 8
 input = {
   array: [8, 12, 2, 3, 15, 5, 7],
 };
 expected = [35, [8, 12, 15]];
-output = func(...Object.values(input));
-test(output, expected, testNum, lowestTest, highestTest);
+test(func, input, expected, testNum, lowestTest, highestTest);
 
 // Test case 9
 input = {
   array: [10, 15, 4, 5, 11, 14, 31, 25, 31, 23, 25, 31, 50],
 };
 expected = [164, [10, 11, 14, 23, 25, 31, 50]];
-output = func(...Object.values(input));
-test(output, expected, testNum, lowestTest, highestTest);
+test(func, input, expected, testNum, lowestTest, highestTest);

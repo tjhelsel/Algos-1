@@ -74,7 +74,7 @@ function solution_2(intervals) {
 
 const test = require('./_test');
 const testNum = [1];
-let input, output, expected;
+let input, expected;
 const func = mergeOverlappingIntervals;
 const lowestTest = 0 || 0;
 const highestTest = 0 || Infinity;
@@ -93,8 +93,7 @@ expected = [
   [4, 10],
   [20, 25],
 ];
-output = func(...Object.values(input));
-test(output, expected, testNum, lowestTest, highestTest);
+test(func, input, expected, testNum, lowestTest, highestTest);
 
 // Test case 2
 input = {
@@ -111,5 +110,4 @@ expected = [
   [10, 12],
   [14, 15],
 ];
-output = func(...Object.values(input));
-test(output, expected, testNum, lowestTest, highestTest);
+test(func, input, expected, testNum, lowestTest, highestTest);

@@ -43,9 +43,9 @@ class BST {
   }
 
   // SWITCHING BETWEEN SOLUTIONS:
-  // const NAME_OF_ALGO_HERE = solution_1;
+  groupByHeight () { return this.solution_1(); }
 
-  groupByHeight() {
+  solution_1 () {
     const [_, memo] = this.getHeightsOfNodes();
     return memo;
   }
@@ -74,8 +74,8 @@ class BST {
 
 const test = require('./_test');
 const testNum = [1];
-let input, output, expected;
-//const func = FUNCTION_NAME_HERE;
+let input, expected;
+const func = (new BST).groupByHeight;
 const lowestTest = 0 || 0;
 const highestTest = 0 || Infinity;
 
@@ -90,9 +90,6 @@ input = {
     .insert(25)
     .insert(35)
     .insert(45),
-  args: {
-
-  },
 };
 expected = [
   [5, 25, 35, 45],
@@ -101,8 +98,7 @@ expected = [
   [20],
   [40],
 ];
-output = input.BST.groupByHeight();
-test(output, expected, testNum, lowestTest, highestTest);
+test(func.bind(input.BST), {arg: null}, expected, testNum, lowestTest, highestTest);
 
 // Test case 2
 input = {
@@ -119,9 +115,6 @@ input = {
     .insert(20)
     .insert(34)
     .insert(90),
-  args: {
-
-  },
 };
 expected = [
   [20, 34, 45, 90],
@@ -131,5 +124,4 @@ expected = [
   [40, 60],
   [50],
 ];
-output = input.BST.groupByHeight();
-test(output, expected, testNum, lowestTest, highestTest);
+test(func.bind(input.BST), {arg: null}, expected, testNum, lowestTest, highestTest);

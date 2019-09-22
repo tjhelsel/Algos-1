@@ -65,7 +65,7 @@ function solution_1 (payments, total) {
 
 const test = require('./_test');
 const testNum = [1];
-let input, output, expected;
+let input, expected;
 const func = splitBill;
 const lowestTest = 0 || 0;
 const highestTest = 0 || Infinity;
@@ -81,8 +81,7 @@ expected = {
   7: { 2: 3, 5: 1 },
   8: { 9: 3 },
 };
-output = func(...Object.values(input));
-test(output, expected, testNum, lowestTest, highestTest);
+test(func, input, expected, testNum, lowestTest, highestTest);
 
 // Test case 2
 input = {
@@ -93,8 +92,7 @@ expected = {
   3: { 0: 4 },
   4: { 1: 11 },
 };
-output = func(...Object.values(input));
-test(output, expected, testNum, lowestTest, highestTest);
+test(func, input, expected, testNum, lowestTest, highestTest);
 
 // Test case 3
 input = {
@@ -107,5 +105,4 @@ expected = {
   6: { 0: 7, 3: 2 },
   7: { 5: 2 },
 };
-output = func(...Object.values(input));
-test(output, expected, testNum, lowestTest, highestTest);
+test(func, input, expected, testNum, lowestTest, highestTest);

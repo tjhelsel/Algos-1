@@ -70,7 +70,7 @@ function solution_1 (str1, str2) {
 
 const test = require('./_test');
 const testNum = [1];
-let input, output, expected;
+let input, expected;
 const func = levenshteinDistance;
 const lowestTest = 0 || 0;
 const highestTest = 0 || Infinity;
@@ -81,8 +81,7 @@ input = {
   str2: '',
 };
 expected = 0;
-output = func(...Object.values(input));
-test(output, expected, testNum, lowestTest, highestTest);
+test(func, input, expected, testNum, lowestTest, highestTest);
 
 // Test case 2
 input = {
@@ -90,8 +89,7 @@ input = {
   str2: 'abc',
 };
 expected = 3;
-output = func(...Object.values(input));
-test(output, expected, testNum, lowestTest, highestTest);
+test(func, input, expected, testNum, lowestTest, highestTest);
 
 // Test case 3
 input = {
@@ -99,8 +97,7 @@ input = {
   str2: 'abc',
 };
 expected = 0;
-output = func(...Object.values(input));
-test(output, expected, testNum, lowestTest, highestTest);
+test(func, input, expected, testNum, lowestTest, highestTest);
 
 // Test case 4
 input = {
@@ -108,8 +105,7 @@ input = {
   str2: 'abx',
 };
 expected = 1;
-output = func(...Object.values(input));
-test(output, expected, testNum, lowestTest, highestTest);
+test(func, input, expected, testNum, lowestTest, highestTest);
 
 // Test case 5
 input = {
@@ -117,8 +113,7 @@ input = {
   str2: 'abcx',
 };
 expected = 1;
-output = func(...Object.values(input));
-test(output, expected, testNum, lowestTest, highestTest);
+test(func, input, expected, testNum, lowestTest, highestTest);
 
 // Test case 6
 input = {
@@ -126,8 +121,7 @@ input = {
   str2: 'yabcx',
 };
 expected = 2;
-output = func(...Object.values(input));
-test(output, expected, testNum, lowestTest, highestTest);
+test(func, input, expected, testNum, lowestTest, highestTest);
 
 // Test case 7
 input = {
@@ -135,8 +129,7 @@ input = {
   str2: 'algozexpert',
 };
 expected = 1;
-output = func(...Object.values(input));
-test(output, expected, testNum, lowestTest, highestTest);
+test(func, input, expected, testNum, lowestTest, highestTest);
 
 // Test case 8
 input = {
@@ -144,8 +137,7 @@ input = {
   str2: '1234567890',
 };
 expected = 10;
-output = func(...Object.values(input));
-test(output, expected, testNum, lowestTest, highestTest);
+test(func, input, expected, testNum, lowestTest, highestTest);
 
 // Test case 9
 input = {
@@ -153,8 +145,7 @@ input = {
   str2: 'a234567890',
 };
 expected = 9;
-output = func(...Object.values(input));
-test(output, expected, testNum, lowestTest, highestTest);
+test(func, input, expected, testNum, lowestTest, highestTest);
 
 // Test case 10
 input = {
@@ -162,8 +153,7 @@ input = {
   str2: 'mitten',
 };
 expected = 4;
-output = func(...Object.values(input));
-test(output, expected, testNum, lowestTest, highestTest);
+test(func, input, expected, testNum, lowestTest, highestTest);
 
 // Test case 11
 input = {
@@ -171,8 +161,7 @@ input = {
   str2: 'saturday',
 };
 expected = 6;
-output = func(...Object.values(input));
-test(output, expected, testNum, lowestTest, highestTest);
+test(func, input, expected, testNum, lowestTest, highestTest);
 
 // Test case 12
 input = {
@@ -180,8 +169,7 @@ input = {
   str2: 'saturdzz',
 };
 expected = 7;
-output = func(...Object.values(input));
-test(output, expected, testNum, lowestTest, highestTest);
+test(func, input, expected, testNum, lowestTest, highestTest);
 
 // Test case 13
 input = {
@@ -189,8 +177,7 @@ input = {
   str2: 'bbbbbbbbba',
 };
 expected = 2;
-output = func(...Object.values(input));
-test(output, expected, testNum, lowestTest, highestTest);
+test(func, input, expected, testNum, lowestTest, highestTest);
 
 // Test case 14
 input = {
@@ -198,8 +185,7 @@ input = {
   str2: 'yabd',
 };
 expected = 2;
-output = func(...Object.values(input));
-test(output, expected, testNum, lowestTest, highestTest);
+test(func, input, expected, testNum, lowestTest, highestTest);
 
 // Test case 15
 input = {
@@ -207,5 +193,4 @@ input = {
   str2: 'abcx',
 };
 expected = 2;
-output = func(...Object.values(input));
-test(output, expected, testNum, lowestTest, highestTest);
+test(func, input, expected, testNum, lowestTest, highestTest);

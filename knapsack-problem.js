@@ -17,6 +17,8 @@ function solution_1 (items, capacity) {
   const maxValuesAndIndices = [];
   for (let i = 0; i <= capacity; i++) maxValuesAndIndices[i] = [0, []];
 
+  console.log(`TESTNUM IS ${testNum}`);
+
   // ITERATE THROUGH ALL ITEMS, DYNAMICALLY UPDATING THE maxValuesAndIndices ARRAY
   for (let itemIndex = 0; itemIndex < items.length; itemIndex++) {
 
@@ -37,9 +39,8 @@ function solution_1 (items, capacity) {
         currentValue += itemValue;
         currentIndices.push(itemIndex);
       }
-
     }
-
+    //console.log('MAX VALUES AND INDICES:', maxValuesAndIndices);
   }
 
   return maxValuesAndIndices[capacity];
@@ -49,10 +50,10 @@ function solution_1 (items, capacity) {
 
 const test = require('./_test');
 const testNum = [1];
-let input, output, expected;
+let input, expected;
 const func = knapsackProblem;
-const lowestTest = 1 || 0;
-const highestTest = 1 || Infinity;
+const lowestTest = 0 || 0;
+const highestTest = 0 || Infinity;
 
 // Test case 1
 input = {
@@ -65,8 +66,7 @@ input = {
   capacity: 10,
 };
 expected = [10, [1,3]];
-output = func(...Object.values(input));
-test(output, expected, testNum, lowestTest, highestTest);
+test(func, input, expected, testNum, lowestTest, highestTest);
 
 // Test case 2
 input = {
@@ -91,8 +91,7 @@ input = {
   capacity: 200,
 };
 expected = [1500, [3, 12, 14]];
-output = func(...Object.values(input));
-test(output, expected, testNum, lowestTest, highestTest);
+test(func, input, expected, testNum, lowestTest, highestTest);
 
 // Test case 3
 input = {
@@ -117,8 +116,7 @@ input = {
   capacity: 200,
 };
 expected = [1505, [7, 12, 14, 15]];
-output = func(...Object.values(input));
-test(output, expected, testNum, lowestTest, highestTest);
+test(func, input, expected, testNum, lowestTest, highestTest);
 
 // Test case 4
 input = {
@@ -132,8 +130,7 @@ input = {
   capacity: 100,
 };
 expected = [101, [0, 2, 3]];
-output = func(...Object.values(input));
-test(output, expected, testNum, lowestTest, highestTest);
+test(func, input, expected, testNum, lowestTest, highestTest);
 
 // Test case 5
 input = {
@@ -147,8 +144,7 @@ input = {
   capacity: 100,
 };
 expected = [100, [1, 2]];
-output = func(...Object.values(input));
-test(output, expected, testNum, lowestTest, highestTest);
+test(func, input, expected, testNum, lowestTest, highestTest);
 
 // Test case 6
 input = {
@@ -162,5 +158,4 @@ input = {
   capacity: 0,
 };
 expected = [0, []];
-output = func(...Object.values(input));
-test(output, expected, testNum, lowestTest, highestTest);
+test(func, input, expected, testNum, lowestTest, highestTest);

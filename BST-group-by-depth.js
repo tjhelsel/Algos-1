@@ -39,9 +39,9 @@ class BST {
   }
 
   // SWITCHING BETWEEN SOLUTIONS:
-  // const NAME_OF_ALGO_HERE = solution_1;
+  groupByDepth () { return this.solution_1(); }
 
-  groupByDepth() {
+  solution_1 () {
 
     // INITIALIZATIONS
     const output = [];              // the final array to be returned
@@ -82,8 +82,8 @@ class BST {
 
 const test = require('./_test');
 const testNum = [1];
-let input, output, expected;
-//const func = FUNCTION_NAME_HERE;
+let input, expected;
+const func = (new BST).groupByDepth;
 const lowestTest = 0 || 0;
 const highestTest = 0 || Infinity;
 
@@ -98,9 +98,6 @@ input = {
     .insert(25)
     .insert(35)
     .insert(45),
-  args: {
-
-  },
 };
 expected = [
   [5],
@@ -109,8 +106,7 @@ expected = [
   [20, 45],
   [40],
 ];
-output = input.BST.groupByDepth();
-test(output, expected, testNum, lowestTest, highestTest);
+test(func.bind(input.BST), {arg: null}, expected, testNum, lowestTest, highestTest);
 
 // Test case 2
 input = {
@@ -127,9 +123,6 @@ input = {
   .insert(20)
   .insert(34)
   .insert(90),
-  args: {
-    
-  },
 };
 expected = [
   [20, 34, 90],
@@ -139,5 +132,4 @@ expected = [
   [40, 60],
   [50],
 ];
-output = input.BST.groupByDepth();
-test(output, expected, testNum, lowestTest, highestTest);
+test(func.bind(input.BST), {arg: null}, expected, testNum, lowestTest, highestTest);

@@ -75,7 +75,7 @@ function solution_1 (n) {
 
 const test = require('./_test');
 const testNum = [1];
-let input, output, expected;
+let input, expected;
 const func = generateMatrix;
 const lowestTest = 0 || 0;
 const highestTest = 0 || Infinity;
@@ -85,8 +85,7 @@ input = {
   n: 0,
 };
 expected = [];
-output = func(...Object.values(input));
-test(output, expected, testNum, lowestTest, highestTest);
+test(func, input, expected, testNum, lowestTest, highestTest);
 
 // Test case 2
 input = {
@@ -95,8 +94,7 @@ input = {
 expected = [
   [1],
 ];
-output = func(...Object.values(input));
-test(output, expected, testNum, lowestTest, highestTest);
+test(func, input, expected, testNum, lowestTest, highestTest);
 
 // Test case 3
 input = {
@@ -106,8 +104,7 @@ expected = [
   [1, 2],
   [4, 3],
 ];
-output = func(...Object.values(input));
-test(output, expected, testNum, lowestTest, highestTest);
+test(func, input, expected, testNum, lowestTest, highestTest);
 
 // Test case 4
 input = {
@@ -120,5 +117,4 @@ expected = [
   [14, 23, 22, 21, 8],
   [13, 12, 11, 10, 9],
 ];
-output = func(...Object.values(input));
-test(output, expected, testNum, lowestTest, highestTest);
+test(func, input, expected, testNum, lowestTest, highestTest);

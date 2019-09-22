@@ -129,7 +129,7 @@ function solution_2 (gas, cost) {
 
 const test = require('./_test');
 const testNum = [1];
-let input, output, expected;
+let input, expected;
 const func = canCompleteCircuit;
 const lowestTest = 0 || 0;
 const highestTest = 0 || Infinity;
@@ -140,8 +140,7 @@ input = {
   cost: [3, 4, 5, 1, 2],
 };
 expected = 3;
-output = func(...Object.values(input));
-test(output, expected, testNum, lowestTest, highestTest);
+test(func, input, expected, testNum, lowestTest, highestTest);
 
 // Test case 2
 input = {
@@ -149,8 +148,7 @@ input = {
   cost: [3, 4, 3],
 };
 expected = -1;
-output = func(...Object.values(input));
-test(output, expected, testNum, lowestTest, highestTest);
+test(func, input, expected, testNum, lowestTest, highestTest);
 
 // Test case 3
 input = {
@@ -158,5 +156,4 @@ input = {
   cost: [3, 2, 7, 3, 2, 9],
 };
 expected = -1;
-output = func(...Object.values(input));
-test(output, expected, testNum, lowestTest, highestTest);
+test(func, input, expected, testNum, lowestTest, highestTest);

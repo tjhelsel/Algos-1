@@ -81,7 +81,7 @@ function solution_1 (nums) {
 
 const test = require('./_test');
 const testNum = [1];
-let input, output, expected;
+let input, expected;
 const func = firstMissingPositive;
 const lowestTest = 0 || 0;
 const highestTest = 0 || Infinity;
@@ -91,85 +91,73 @@ input = {
   nums: [1, 2, 0],
 };
 expected = 3;
-output = func(...Object.values(input));
-test(output, expected, testNum, lowestTest, highestTest);
+test(func, input, expected, testNum, lowestTest, highestTest);
 
 // Test case 2
 input = {
   nums: [3, 4, -1, 1],
 };
 expected = 2;
-output = func(...Object.values(input));
-test(output, expected, testNum, lowestTest, highestTest);
+test(func, input, expected, testNum, lowestTest, highestTest);
 
 // Test case 3
 input = {
   nums: [7, 8, 9, 11, 12],
 };
 expected = 1;
-output = func(...Object.values(input));
-test(output, expected, testNum, lowestTest, highestTest);
+test(func, input, expected, testNum, lowestTest, highestTest);
 
 // Test case 4
 input = {
   nums: [2, 1],
 };
 expected = 3;
-output = func(...Object.values(input));
-test(output, expected, testNum, lowestTest, highestTest);
+test(func, input, expected, testNum, lowestTest, highestTest);
 
 // Test case 5
 input = {
   nums: [1, 1000],
 };
 expected = 2;
-output = func(...Object.values(input));
-test(output, expected, testNum, lowestTest, highestTest);
+test(func, input, expected, testNum, lowestTest, highestTest);
 
 // Test case 6
 input = {
   nums: [1, 2, 3],
 };
 expected = 4;
-output = func(...Object.values(input));
-test(output, expected, testNum, lowestTest, highestTest);
-
+test(func, input, expected, testNum, lowestTest, highestTest);
 // Test case 7
 input = {
   nums: [1, 0, 3, 3, 0, 2],
 };
 expected = 4;
-output = func(...Object.values(input));
-test(output, expected, testNum, lowestTest, highestTest);
+test(func, input, expected, testNum, lowestTest, highestTest);
 
 // Test case 8
 input = {
   nums: [0, -1, 3, 1],
 };
 expected = 2;
-output = func(...Object.values(input));
-test(output, expected, testNum, lowestTest, highestTest);
+test(func, input, expected, testNum, lowestTest, highestTest);
 
 // Test case 9
 input = {
   nums: [],
 };
 expected = 1;
-output = func(...Object.values(input));
-test(output, expected, testNum, lowestTest, highestTest);
+test(func, input, expected, testNum, lowestTest, highestTest);
 
 // Test case 10
 input = {
   nums: [1],
 };
 expected = 2;
-output = func(...Object.values(input));
-test(output, expected, testNum, lowestTest, highestTest);
+test(func, input, expected, testNum, lowestTest, highestTest);
 
 // Test case 11
 input = {
   nums: [2],
 };
 expected = 1;
-output = func(...Object.values(input));
-test(output, expected, testNum, lowestTest, highestTest);
+test(func, input, expected, testNum, lowestTest, highestTest);

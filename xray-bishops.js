@@ -114,7 +114,7 @@ function solution_2 (boardSize, bishopTuples) {
 
 const test = require('./_test');
 const testNum = [1];
-let input, output, expected;
+let input, expected;
 const func = xrayBishops;
 const lowestTest = 0 || 0;
 const highestTest = 0 || Infinity;
@@ -130,8 +130,7 @@ input = {
   ],
 };
 expected = 2;
-output = func(...Object.values(input));
-test(output, expected, testNum, lowestTest, highestTest);
+test(func, input, expected, testNum, lowestTest, highestTest);
 
 // Test case 2
 input = {
@@ -149,8 +148,7 @@ input = {
   ],
 };
 expected = 12;
-output = func(...Object.values(input));
-test(output, expected, testNum, lowestTest, highestTest);
+test(func, input, expected, testNum, lowestTest, highestTest);
 
 // Test case 3
 input = {
@@ -168,5 +166,4 @@ input = {
   ],
 };
 expected = 10;
-output = func(...Object.values(input));
-test(output, expected, testNum, lowestTest, highestTest);
+test(func, input, expected, testNum, lowestTest, highestTest);

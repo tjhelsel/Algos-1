@@ -4,12 +4,6 @@
 
 // Note: If the given node has no in-order successor in the tree, return null.
 
-// SWITCHING BETWEEN SOLUTIONS:
-// const NAME_OF_ALGO_HERE = solution_1;
-
-  // SOLUTION 1 [O(???) time, O(???) space]:
-  // asdf
-
 // Note: The BST class with constructor and "insert" method are already provided. The code for this comes from AlgoExpert.
 
 class BST {
@@ -37,9 +31,9 @@ class BST {
   }
 
   // SWITCHING BETWEEN SOLUTIONS:
-  // const NAME_OF_ALGO_HERE = solution_1;
+  inOrderSuccessor () { return this.solution_1(); }
 
-  inOrderSuccessor(predecessor) {               // if writing this out as a separate function, there would be a "root" argument before "predecessor"...
+  solution_1 (predecessor = this) {             // if writing this out as a separate function, there would be a "root" argument before "predecessor"...
     let currentNode = this;                     // ...and this line would be `let currentNode = root;`
     let mostRecentNodeWhereYouWentLeft = null;  // have to initialize this as null in case predecessor is the rightmost node (and has no successor)
 
@@ -69,8 +63,8 @@ class BST {
 
 const test = require('./_test');
 const testNum = [1];
-let input, output, expected;
-//const func = FUNCTION_NAME_HERE;
+let input, expected;
+const func = (new BST).inOrderSuccessor;
 const lowestTest = 0 || 0;
 const highestTest = 0 || Infinity;
 
@@ -92,6 +86,5 @@ input = {
     .insert(1)
     .insert(10),
 };
-expected = 5;
-output = input.BST.inOrderSuccessor(input.BST.right.left.left).value;   // i.e. input is node with value 4
-test(output, expected, testNum, lowestTest, highestTest);
+expected = input.BST.right.right;
+test(func.bind(input.BST), {predecessor: input.BST.right}, expected, testNum, lowestTest, highestTest);

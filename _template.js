@@ -16,29 +16,26 @@ function solution_1 (INPUT_HERE) {
 
 const test = require('./_test');
 const testNum = [1];
-let input, output, expected;
-const func = FUNCTION_NAME_HERE;
+let input, expected;
+const func = 'FUNCTION_NAME_HERE';
 
 // Test case 1
 input = {
   ARG_1: 'INPUT_HERE',
 };
 expected = 'EXPECTED_HERE';
-output = func(...Object.values(input));
-test(output, expected, testNum);
+test(func, input, expected, testNum, lowestTest, highestTest);
 
 // Test case 2
 input = {
   ARG_1: 'INPUT_HERE',
 };
 expected = 'EXPECTED_HERE';
-output = func(...Object.values(input));
-test(output, expected, testNum);
+test(func, input, expected, testNum, lowestTest, highestTest);
 
 // Test case 3
 input = {
   ARG_1: 'INPUT_HERE',
 };
 expected = 'EXPECTED_HERE';
-output = func(...Object.values(input));
-test(output, expected, testNum);
+test(func, input, expected, testNum, lowestTest, highestTest);
