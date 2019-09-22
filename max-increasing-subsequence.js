@@ -101,6 +101,8 @@ const test = require('./_test');
 const testNum = [1];
 let input, output, expected;
 const func = maxSumIncreasingSubsequence;
+const lowestTest = 0 || 0;
+const highestTest = 0 || Infinity;
 
 // Test case 1
 input = {
@@ -108,7 +110,7 @@ input = {
 };
 expected = [1, [1]];
 output = func(...Object.values(input));
-test(output, expected, testNum);
+test(output, expected, testNum, lowestTest, highestTest);
 
 // Test case 2
 input = {
@@ -116,7 +118,7 @@ input = {
 };
 expected = [-1, [-1]];
 output = func(...Object.values(input));
-test(output, expected, testNum);
+test(output, expected, testNum, lowestTest, highestTest);
 
 // Test case 3
 input = {
@@ -124,7 +126,7 @@ input = {
 };
 expected = [1, [1]];
 output = func(...Object.values(input));
-test(output, expected, testNum);
+test(output, expected, testNum, lowestTest, highestTest);
 
 // Test case 4
 input = {
@@ -132,7 +134,7 @@ input = {
 };
 expected = [5, [5]];
 output = func(...Object.values(input));
-test(output, expected, testNum);
+test(output, expected, testNum, lowestTest, highestTest);
 
 // Test case 5
 input = {
@@ -140,7 +142,7 @@ input = {
 };
 expected = [15, [1, 2, 3, 4, 5]];
 output = func(...Object.values(input));
-test(output, expected, testNum);
+test(output, expected, testNum, lowestTest, highestTest);
 
 // Test case 6
 input = {
@@ -148,7 +150,7 @@ input = {
 };
 expected = [-1, [-1]];
 output = func(...Object.values(input));
-test(output, expected, testNum);
+test(output, expected, testNum, lowestTest, highestTest);
 
 // Test case 7
 input = {
@@ -156,7 +158,7 @@ input = {
 };
 expected = [110, [10, 20, 30, 50]];
 output = func(...Object.values(input));
-test(output, expected, testNum);
+test(output, expected, testNum, lowestTest, highestTest);
 
 // Test case 8
 input = {
@@ -164,7 +166,7 @@ input = {
 };
 expected = [35, [8, 12, 15]];
 output = func(...Object.values(input));
-test(output, expected, testNum);
+test(output, expected, testNum, lowestTest, highestTest);
 
 // Test case 9
 input = {
@@ -172,4 +174,4 @@ input = {
 };
 expected = [164, [10, 11, 14, 23, 25, 31, 50]];
 output = func(...Object.values(input));
-test(output, expected, testNum);
+test(output, expected, testNum, lowestTest, highestTest);

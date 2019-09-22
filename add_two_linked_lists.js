@@ -89,6 +89,8 @@ const test = require('./_test');
 const testNum = [1];
 let input, output, expected;
 const func = addTwoLinkedLists;
+const lowestTest = 0 || 0;
+const highestTest = 0 || Infinity;
 
 // Test case 1
 input = {
@@ -101,7 +103,7 @@ input = {
 };
 expected = new ListNode(7).insert(0).insert(8);
 output = func(...Object.values(input));
-test(output, expected, testNum);
+test(output, expected, testNum, lowestTest, highestTest);
 
 // Test case 2
 input = {
@@ -110,7 +112,7 @@ input = {
 };
 expected = new ListNode(0).insert(1);
 output = func(...Object.values(input));
-test(output, expected, testNum);
+test(output, expected, testNum, lowestTest, highestTest);
 
 // Test case 3
 input = {
@@ -119,7 +121,7 @@ input = {
 };
 expected = new ListNode(0);
 output = func(...Object.values(input));
-test(output, expected, testNum);
+test(output, expected, testNum, lowestTest, highestTest);
 
 // Test case 4
 input = {
@@ -130,4 +132,4 @@ input = {
 };
 expected = new ListNode(0).insert(0).insert(0).insert(1);
 output = func(...Object.values(input));
-test(output, expected, testNum);
+test(output, expected, testNum, lowestTest, highestTest);

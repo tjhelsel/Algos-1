@@ -77,6 +77,8 @@ const test = require('./_test');
 const testNum = [1];
 let input, output, expected;
 const func = generateMatrix;
+const lowestTest = 0 || 0;
+const highestTest = 0 || Infinity;
 
 // Test case 1
 input = {
@@ -84,7 +86,7 @@ input = {
 };
 expected = [];
 output = func(...Object.values(input));
-test(output, expected, testNum);
+test(output, expected, testNum, lowestTest, highestTest);
 
 // Test case 2
 input = {
@@ -94,7 +96,7 @@ expected = [
   [1],
 ];
 output = func(...Object.values(input));
-test(output, expected, testNum);
+test(output, expected, testNum, lowestTest, highestTest);
 
 // Test case 3
 input = {
@@ -105,7 +107,7 @@ expected = [
   [4, 3],
 ];
 output = func(...Object.values(input));
-test(output, expected, testNum);
+test(output, expected, testNum, lowestTest, highestTest);
 
 // Test case 4
 input = {
@@ -119,4 +121,4 @@ expected = [
   [13, 12, 11, 10, 9],
 ];
 output = func(...Object.values(input));
-test(output, expected, testNum);
+test(output, expected, testNum, lowestTest, highestTest);

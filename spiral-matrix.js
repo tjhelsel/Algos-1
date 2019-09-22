@@ -161,6 +161,8 @@ const test = require('./_test');
 const testNum = [1];
 let input, output, expected;
 const func = spiralOrder;
+const lowestTest = 0 || 0;
+const highestTest = 0 || Infinity;
 
 // Test case 1
 input = {
@@ -168,7 +170,7 @@ input = {
 };
 expected = [];
 output = func(...Object.values(input));
-test(output, expected, testNum);
+test(output, expected, testNum, lowestTest, highestTest);
 
 // Test case 2
 input = {
@@ -178,7 +180,7 @@ input = {
 };
 expected = [1];
 output = func(...Object.values(input));
-test(output, expected, testNum);
+test(output, expected, testNum, lowestTest, highestTest);
 
 // Test case 3
 input = {
@@ -188,7 +190,7 @@ input = {
 };
 expected = [1, 2, 3, 4, 5];
 output = func(...Object.values(input));
-test(output, expected, testNum);
+test(output, expected, testNum, lowestTest, highestTest);
 
 // Test case 4
 input = {
@@ -200,7 +202,7 @@ input = {
 };
 expected = [1, 2, 3, 6, 9, 8, 7, 4, 5];
 output = func(...Object.values(input));
-test(output, expected, testNum);
+test(output, expected, testNum, lowestTest, highestTest);
 
 // Test case 5
 input = {
@@ -212,4 +214,4 @@ input = {
 };
 expected = [2, 5, 4, -1, 0, 8];
 output = func(...Object.values(input));
-test(output, expected, testNum);
+test(output, expected, testNum, lowestTest, highestTest);

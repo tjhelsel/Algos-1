@@ -71,6 +71,8 @@ const test = require('./_test');
 const testNum = [1];
 let input, output, expected;
 //const func = FUNCTION_NAME_HERE;
+const lowestTest = 0 || 0;
+const highestTest = 0 || Infinity;
 
 // Test case 1
 input = {
@@ -92,4 +94,4 @@ input = {
 };
 expected = 5;
 output = input.BST.inOrderSuccessor(input.BST.right.left.left).value;   // i.e. input is node with value 4
-test(output, expected, testNum);
+test(output, expected, testNum, lowestTest, highestTest);

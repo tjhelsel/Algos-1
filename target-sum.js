@@ -98,6 +98,8 @@ const test = require('./_test');
 const testNum = [1];
 let input, output, expected;
 const func = findTargetSumWays;
+const lowestTest = 0 || 0;
+const highestTest = 0 || Infinity;
 
 // Test case 1
 input = {
@@ -106,7 +108,7 @@ input = {
 };
 expected = 5;
 output = func(...Object.values(input));
-test(output, expected, testNum);
+test(output, expected, testNum, lowestTest, highestTest);
 
 // Test case 2
 input = {
@@ -115,7 +117,7 @@ input = {
 };
 expected = 256;
 output = func(...Object.values(input));
-test(output, expected, testNum);
+test(output, expected, testNum, lowestTest, highestTest);
 
 // Test case 3
 input = {
@@ -124,7 +126,7 @@ input = {
 };
 expected = 40;
 output = func(...Object.values(input));
-test(output, expected, testNum);
+test(output, expected, testNum, lowestTest, highestTest);
 
 // Test case 4
 input = {
@@ -133,7 +135,7 @@ input = {
 };
 expected = 2;
 output = func(...Object.values(input));
-test(output, expected, testNum);
+test(output, expected, testNum, lowestTest, highestTest);
 
 // Test case 5
 input = {
@@ -142,7 +144,7 @@ input = {
 };
 expected = 8;
 output = func(...Object.values(input));
-test(output, expected, testNum);
+test(output, expected, testNum, lowestTest, highestTest);
 
 // Test case 6
 input = {
@@ -151,7 +153,7 @@ input = {
 };
 expected = 1048576;
 output = func(...Object.values(input));
-test(output, expected, testNum);
+test(output, expected, testNum, lowestTest, highestTest);
 
 // Test case 6
 input = {
@@ -160,4 +162,4 @@ input = {
 };
 expected = 0;
 output = func(...Object.values(input));
-test(output, expected, testNum);
+test(output, expected, testNum, lowestTest, highestTest);

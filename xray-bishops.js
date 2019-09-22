@@ -116,6 +116,8 @@ const test = require('./_test');
 const testNum = [1];
 let input, output, expected;
 const func = xrayBishops;
+const lowestTest = 0 || 0;
+const highestTest = 0 || Infinity;
 
 // Test case 1
 input = {
@@ -129,7 +131,7 @@ input = {
 };
 expected = 2;
 output = func(...Object.values(input));
-test(output, expected, testNum);
+test(output, expected, testNum, lowestTest, highestTest);
 
 // Test case 2
 input = {
@@ -148,7 +150,7 @@ input = {
 };
 expected = 12;
 output = func(...Object.values(input));
-test(output, expected, testNum);
+test(output, expected, testNum, lowestTest, highestTest);
 
 // Test case 3
 input = {
@@ -167,4 +169,4 @@ input = {
 };
 expected = 10;
 output = func(...Object.values(input));
-test(output, expected, testNum);
+test(output, expected, testNum, lowestTest, highestTest);
