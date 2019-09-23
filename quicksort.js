@@ -48,9 +48,18 @@ function helper(array, startIdx, endIdx) {
 	}
 	swap(array, left, endIdx);					// now, left must be pointing wherever pivot should end up, so swap
 	
-	// left NOW POINTS TO PROPERLY PLACED PIVOT. RECURSE ON EACH SIDE OF PIVOT AS NECESSARY.
-	if (left !== startIdx) helper(array, startIdx, left - 1);
-	if (left !== endIdx) helper(array, left + 1, endIdx);
+  // left NOW POINTS TO PROPERLY PLACED PIVOT. RECURSE ON EACH SIDE OF PIVOT AS NECESSARY.
+  // NOTE: as an optimization, you must recurse on the smaller of the two sides first, so that the call stack
+  // approaches O(log n) additional space in the worst case scenario. if you recurse on the larger side first,
+  // in the worst case scenario it can approach O(n)!
+  const leftSideIsSmaller = left - startIdx > endIdx - left;
+  if (leftSideIsSmaller) {
+    if (left !== startIdx) helper(array, startIdx, left - 1);
+    if (left !== endIdx) helper(array, left + 1, endIdx);
+  } else {
+    if (left !== endIdx) helper(array, left + 1, endIdx);
+    if (left !== startIdx) helper(array, startIdx, left - 1);
+  }
 }
 
 function swap(array, positionA, positionB) {
