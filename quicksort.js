@@ -24,12 +24,12 @@ function solution_1 (array) {
   // the pivot number is now properly placed. if anything exists to the left of the pivot, recurse with the subarray
   // to its left; likewise, if anything exists to the right of the pivot, recurse with the subarray to its right.
 
-  helper(array, 0, array.length - 1);		// helper does all the work without returns
+  helper(array);		// helper does all the work without returns
 	return array;													// this function merely invokes helper and then returns the array
 }
 
 // THE PURPOSE OF helper IS TO CREATE THE SIDE EFFECT OF ACTUALLY DOING THE SORT, WITHOUT RETURNS
-function helper(array, startIdx, endIdx) {
+function helper(array, startIdx = 0, endIdx = array.length - 1) {
 	
 	// EDGE CASE: subarray of length 1
 	if (startIdx === endIdx) return;
