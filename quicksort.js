@@ -25,7 +25,7 @@ function solution_1 (array) {
   // to its left; likewise, if anything exists to the right of the pivot, recurse with the subarray to its right.
 
   helper(array);		// helper does all the work without returns
-	return array;													// this function merely invokes helper and then returns the array
+	return array;			// this function merely invokes helper and then returns the array
 }
 
 // THE PURPOSE OF helper IS TO CREATE THE SIDE EFFECT OF ACTUALLY DOING THE SORT, WITHOUT RETURNS
