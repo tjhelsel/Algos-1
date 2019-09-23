@@ -10,14 +10,20 @@ const knapsackProblem = solution_1;
 
 function solution_1 (items, capacity) {
 
-  // SOLUTION 1 [O(?) time, O(?) space]:
-  // description
+  // SOLUTION 1 [O(n*c) time, O(n*c) space (even though the 'table' is c wide, each configuration may hold up to n items)]:
+	// you only need one row in your 'table' (call it maxValuesAndIndices). the table should have columns from 0
+	// to capacity. each row should represent the introduction of a new item you can choose from. the table should
+	// be initialized with each value as [ 0, [] ] which means a value of 0, and an empty array of indices (no item
+	// has been selected). at the outer level, iterate through all of the items. for each one, iterate through the
+	// table FROM RIGHT TO LEFT (the process will look leftward in the table for older values, so if you go from
+	// left to right, you may be trying to add the current item to a configuration that already includes the
+	// current item). for each position in the table, look backward by itemWeight (the weight of the current item)
+	// and see if the value there + itemValue would be greater than whatever the value is now. if so, then simply
+	// add the current item to that configuration (update the value and the array of indices stored there).
 
-  // INITIALIZATIONS
+  // INITIALIZATIONS - create and populate the 'table' of maxValuesAndIndices
   const maxValuesAndIndices = [];
   for (let i = 0; i <= capacity; i++) maxValuesAndIndices[i] = [0, []];
-
-  console.log(`TESTNUM IS ${testNum}`);
 
   // ITERATE THROUGH ALL ITEMS, DYNAMICALLY UPDATING THE maxValuesAndIndices ARRAY
   for (let itemIndex = 0; itemIndex < items.length; itemIndex++) {
@@ -25,22 +31,14 @@ function solution_1 (items, capacity) {
     // intialize item component references
     const [itemValue, itemWeight] = items[itemIndex];
 
-    // iterate through maxValuesAndIndices (starting at i === itemWeight), dynamically making updates
-    for (let i = itemWeight; i <= capacity; i++) {
-      
-      // initialize maxValuesAndIndices component references
-      const [currentValue, currentIndices] = maxValuesAndIndices[i];
-
-      // if previous configuration yields higher value, copy that configuration
-      if (maxValuesAndIndices[i - 1][0] > currentValue) maxValuesAndIndices[i] = [...maxValuesAndIndices[i - 1]];
-
+    // iterate RIGHT TO LEFT through maxValuesAndIndices (from end, to weight === itemWeight), dynamically making updates
+    for (let weight = capacity; weight >= itemWeight; weight--) {
       // if adding current item to the configuration looking backward by itemWeight yields higher value, use that configuration
-      if (maxValuesAndIndices[i - itemWeight][0] > currentValue) {
-        currentValue += itemValue;
-        currentIndices.push(itemIndex);
+      if (maxValuesAndIndices[weight - itemWeight][0] + itemValue > maxValuesAndIndices[weight][0]) {
+        maxValuesAndIndices[weight][0] = maxValuesAndIndices[weight - itemWeight][0] + itemValue;
+        maxValuesAndIndices[weight][1] = maxValuesAndIndices[weight - itemWeight][1].concat(itemIndex);
       }
     }
-    //console.log('MAX VALUES AND INDICES:', maxValuesAndIndices);
   }
 
   return maxValuesAndIndices[capacity];
