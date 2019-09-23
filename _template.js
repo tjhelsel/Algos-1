@@ -18,6 +18,8 @@ const test = require('./_test');
 const testNum = [1];
 let input, expected;
 const func = 'FUNCTION_NAME_HERE';
+const lowestTest = 0 || 0;
+const highestTest = 0 || Infinity;
 
 // Test case 1
 input = {
