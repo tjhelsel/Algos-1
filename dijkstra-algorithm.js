@@ -130,7 +130,6 @@ class MinHeap {
     }
     return poppedMin;
   }
-
 }
 
 // TEST CASES
