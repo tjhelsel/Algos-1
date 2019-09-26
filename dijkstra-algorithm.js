@@ -92,17 +92,28 @@ class MinHeap {
   _childrenIndices (parentIdx) {
     return [2 * parentIdx + 1, 2 * parentIdx + 2];
   }
-  _priority (i) {
-    return this.queue[i].priority;
+
+  // PQ METHODS
+  peek () {
+    return this.queue[0];
   }
-  _heapifyUp () {     // 'bubble up' the final element in this.queue until heap is proper
+  insert (value, priority) {
+    // FIRST, ADD THE NEW ELEMENT TO THE END OF QUEUE
+    this.queue.push({value, priority});
+    // NEXT, 'HEAPIFY UP' ('bubble up' the first element in queue until heap is proper)
     let currentNodeIdx = this.queue.length - 1;
     while (currentNodeIdx !== 0 && this.queue[currentNodeIdx].priority < this.queue[this._parentIdx(currentNodeIdx)].priority) {
       this._swap(currentNodeIdx, this._parentIdx(currentNodeIdx));
       currentNodeIdx = this._parentIdx(currentNodeIdx);
     }
+    return this;    // for chaining
   }
-  _heapifyDown () {   // 'push down' the first element in this.queue until heap is proper
+  popMin () {
+    // FIRST, SHIFT OFF THE TOP ELEMENT AND SAVE IT, AND THEN REPLACE WITH LAST ELEMENT
+    const poppedMin = this.queue.shift();                             // can't simply peek and then reassign this.queue[0] = this.queue.pop()...
+    const lastElement = this.queue.pop();                             // ...if this.queue only has one element (it will never get popped off)
+    if (lastElement !== undefined) this.queue.unshift(lastElement);
+    // NEXT, 'HEAPIFY DOWN' ('push down' the first element in queue until heap is proper)
     let currentNodeIdx = 0;
     let [left, right] = this._childrenIndices(currentNodeIdx);
     while (left < this.queue.length) {
@@ -117,23 +128,6 @@ class MinHeap {
         break;
       }
     }
-    return;
-  }
-
-  // PQ METHODS
-  peek () {
-    return this.queue[0];
-  }
-  insert (value, priority) {
-    this.queue.push({value, priority});
-    this._heapifyUp();
-    return this;
-  }
-  popMin () {
-    const poppedMin = this.queue.shift();                             // can't simply peek and then reassign this.queue[0] = this.queue.pop()...
-    const lastElement = this.queue.pop();                             // ...if this.queue only has one element (it will never get popped off)
-    if (lastElement !== undefined) this.queue.unshift(lastElement);
-    this._heapifyDown();
     return poppedMin;
   }
 
