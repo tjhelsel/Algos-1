@@ -97,7 +97,7 @@ class MinHeap {
   peek () {
     return this.queue[0];
   }
-  insert (value, priority) {
+  insert (value, priority = value) {
     // FIRST, ADD THE NEW ELEMENT TO THE END OF QUEUE
     this.queue.push({value, priority});
     // NEXT, 'HEAPIFY UP' ('bubble up' the first element in queue until heap is proper)
