@@ -170,11 +170,16 @@ function solution_3 (matrix) {
   while (topLeft[1] <= topRight[1] && topLeft[0] <= botLeft[0]) {
     
     // SHORT CIRCUIT IF ONLY ONE ROW OR ONE COLUMN REMAINS
-    if (topLeft[0] === botLeft[0]) {
-      return output.concat(matrix[topLeft[0]].slice(topLeft[1], topRight[1] + 1));
+    if (topLeft[0] === botLeft[0]) {                                // one row
+      return output.concat(
+        matrix[topLeft[0]].slice(topLeft[1], topRight[1] + 1)       // slice out the unprocessed part from the remaining row
+      );
     }
-    if (topLeft[1] === topRight[1]) {
-      return output.concat([...Array(botLeft[0] - topLeft[0] + 1).keys()].map(i => matrix[i + topLeft[0]][topLeft[1]]));
+    if (topLeft[1] === topRight[1]) {                               // one column
+      return output.concat(                                         // avoid slicing the entire rows; instead, grab the range of rows and map indices to unprocessed matrix values
+        [...Array(botLeft[0] - topLeft[0] + 1).keys()].map(i =>     // hacky 'range' function using [...Array(n).keys()] for referencing appropriate indices
+          matrix[i + topLeft[0]][topLeft[1]])                       // (shift 0..n range upward by topLeft[0] to get correct indices)
+      );
     }
         
     // OTHERWISE, CORNERS ARE ALL DISTINCT, SO NAVIGATE THROUGH ONE SPIRAL
