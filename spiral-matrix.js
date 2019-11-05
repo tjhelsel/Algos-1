@@ -23,7 +23,7 @@
 // Output: [1, 2, 3, 4, 8, 12, 11, 10, 9, 5, 6, 7]
 
 // SWITCHING BETWEEN SOLUTIONS:
-const spiralOrder = solution_2;
+const spiralOrder = solution_3;
 
 function solution_1 (matrix, dir, TL, TR, BR, BL) {
 
@@ -92,7 +92,7 @@ function solution_1 (matrix, dir, TL, TR, BR, BL) {
       break;
   }
   return currentEdge.concat(spiralOrder(matrix, nextDir[dir], TL, TR, BR, BL));   // concat currentEdge to result of further calls. pass in nextDir and current corners.
-};
+}
 
 function solution_2 (matrix) {
 
@@ -153,6 +153,51 @@ function solution_2 (matrix) {
     }
   }
   return output;
+}
+
+function solution_3 (matrix) {
+  // EDGE CASE - NO ROWS OR NO COLUMNS
+  if (!matrix.length || !matrix[0].length) return [];
+    
+  // INITIALIZATIONS
+  const topLeft = [0, 0];
+  const topRight = [0, matrix[0].length - 1];
+  const botLeft = [matrix.length - 1, 0];
+  const botRight = [matrix.length - 1, matrix[0].length - 1];
+  const output = [];
+    
+  // ITERATE WHILE CORNERS CAPTURE SOME AREA
+  while (topLeft[1] <= topRight[1] && topLeft[0] <= botLeft[0]) {
+    
+    // SHORT CIRCUIT IF ONLY ONE ROW OR ONE COLUMN REMAINS
+    if (topLeft[0] === botLeft[0]) {
+      return output.concat(matrix[topLeft[0]].slice(topLeft[1], topRight[1] + 1));
+    }
+    if (topLeft[1] === topRight[1]) {
+      return output.concat([...Array(botLeft[0] - topLeft[0] + 1).keys()].map(i => matrix[i + topLeft[0]][topLeft[1]]));
+    }
+        
+    // OTHERWISE, CORNERS ARE ALL DISTINCT, SO NAVIGATE THROUGH ONE SPIRAL
+    for (let i = topLeft[1]; i <= topRight[1]; i++) output.push(matrix[topLeft[0]][i]);
+    for (let i = topRight[0] + 1; i <= botRight[0]; i++) output.push(matrix[i][topRight[1]]);
+    for (let i = botRight[1] - 1; i >= botLeft[1]; i--) output.push(matrix[botRight[0]][i]);
+    for (let i = botLeft[0] - 1; i > topLeft[0]; i--) output.push(matrix[i][botLeft[1]]);
+        
+    // MOVE CORNERS IN
+    topLeft[0]++;
+    topLeft[1]++;
+        
+    topRight[0]++;
+    topRight[1]--;
+        
+    botLeft[0]--;
+    botLeft[1]++;
+        
+    botRight[0]--;
+    botRight[1]--;
+  }
+
+  return output;  
 }
 
 // TEST CASES
