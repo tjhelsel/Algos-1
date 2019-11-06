@@ -27,6 +27,8 @@ function equals (actual, expected) {
         if (!equals(actual[actualKeys[i]], expected[expectedKeys[i]])) return false;
       }
       return true;
+    case Set:                                                 // SETS: (1) spread into array and sort, (2) recurse on sorted arrays
+      return equals([...actual].sort(), [...expected].sort());
     case String:                                              // STRINGS: direct comparison
       return actual === expected;
     default:                                                  // NUMBERS (default): (1) check whether actual and expected are both NaN, (2) direct comparison
@@ -40,56 +42,74 @@ module.exports = equals;
 
 // // numbers
 // console.log('NUMBERS:');
-// console.log(equals(1, 1));  // true
-// console.log(equals(0, 1));  // false
+// console.log('TRUE?', equals(1, 1));
+// console.log('FALSE?', equals(0, 1));
+// console.log('');
 
 // // strings
 // console.log('STRING:');
-// console.log(equals('abc', 'abc'));  // true
-// console.log(equals('abc', 'abcd')); // false
+// console.log('TRUE?', equals('abc', 'abc'));
+// console.log('FALSE?', equals('abc', 'abcd'));
+// console.log('');
 
 // // arrays
 // console.log('ARRAYS:');
-// console.log(equals([], []));  // true
-// console.log(equals([], [1]));  // false
-// console.log(equals([1, 2, 3], [1, 2, 3]));  // true
-// console.log(equals([1, 2, 3], [3, 2, 1]));  // false
+// console.log('TRUE?', equals([], []));
+// console.log('FALSE?', equals([], [1]));
+// console.log('TRUE?', equals([1, 2, 3], [1, 2, 3]));
+// console.log('FALSE?', equals([1, 2, 3], [3, 2, 1]));
+// console.log('');
 
 // // object literals
 // console.log('OBJECT LITERALS:');
-// console.log(equals({}, {}));  // true
-// console.log(equals({}, {'a': 1}));  // false
-// console.log(equals({'a': 1, 'b': 2, 'c': 3}, {'a': 1, 'b': 2, 'c': 3}));  // true
-// console.log(equals({'a': 1, 'b': 2, 'c': 3}, {'a': 4, 'b': 5, 'c': 6}));  // false
-// console.log(equals({'a': 1, 'b': 2, 'c': 3}, {'d': 1, 'e': 2, 'f': 3}));  // false
-// console.log(equals({'a': 1, 'b': 2, 'c': 3}, {'c': 3, 'b': 2, 'a': 1}));  // true
-// console.log(equals({'a': 1, 'b': 2, 'c': 3}, {'a': 1, 'b': 2, 'c': 3, 'd': 4}));  // false
+// console.log('TRUE?', equals({}, {}));
+// console.log('FALSE?', equals({}, {'a': 1}));
+// console.log('TRUE?', equals({'a': 1, 'b': 2, 'c': 3}, {'a': 1, 'b': 2, 'c': 3}));
+// console.log('FALSE?', equals({'a': 1, 'b': 2, 'c': 3}, {'a': 4, 'b': 5, 'c': 6}));
+// console.log('FALSE?', equals({'a': 1, 'b': 2, 'c': 3}, {'d': 1, 'e': 2, 'f': 3}));
+// console.log('TRUE?', equals({'a': 1, 'b': 2, 'c': 3}, {'c': 3, 'b': 2, 'a': 1}));
+// console.log('FALSE?', equals({'a': 1, 'b': 2, 'c': 3}, {'a': 1, 'b': 2, 'c': 3, 'd': 4}));
+// console.log('');
 
 // // nested objects
 // console.log('NESTED OBJECTS:');
-// console.log(equals([{'a': 1, 'b': 2, 'c': 3}, [], {'d': 4, 'e': {'f': 6, 'g': 7}}], [{'c': 3, 'b': 2, 'a': 1}, [], {'e': {'g': 7, 'f': 6}, 'd': 4}]));  // true
+// console.log('TRUE?', equals([{'a': 1, 'b': 2, 'c': 3}, [], {'d': 4, 'e': {'f': 6, 'g': 7}}], [{'c': 3, 'b': 2, 'a': 1}, [], {'e': {'g': 7, 'f': 6}, 'd': 4}]));
+// console.log('');
 
 // // NaN - if actual and expected are both NaN, it should return true
 // console.log('NaN:');
-// console.log(equals(NaN, NaN));  // true
-// console.log(equals(1, NaN));    // false
-// console.log(equals(NaN, 1));    // false
-// console.log(equals(1 * 'asdf', 2 * 'asdf'));  // true
+// console.log('TRUE?', equals(NaN, NaN));
+// console.log('FALSE?', equals(1, NaN));
+// console.log('FALSE?', equals(NaN, 1));
+// console.log('TRUE?', equals(1 * 'asdf', 2 * 'asdf'));
+// console.log('');
 
 // // null
 // console.log('NULL:');
-// console.log(equals(null, null));      // true
-// console.log(equals(1, null));         // false
-// console.log(equals(null, 1));         // false
-// console.log(equals(null, undefined)); // false
-// console.log(equals(null, NaN));       // false
-// console.log(equals(NaN, null));       // false
+// console.log('TRUE?', equals(null, null));
+// console.log('FALSE?', equals(1, null));
+// console.log('FALSE?', equals(null, 1));
+// console.log('FALSE?', equals(null, undefined));
+// console.log('FALSE?', equals(null, NaN));
+// console.log('FALSE?', equals(NaN, null));
+// console.log('');
 
 // // undefined
 // console.log('UNDEFINED:');
-// console.log(equals(undefined, undefined));  // true
-// console.log(equals(1, undefined));          // false
-// console.log(equals(undefined, 1));          // false
-// console.log(equals(undefined, null));       // false
-// console.log(equals(undefined, NaN));        // false
-// console.log(equals(NaN, undefined));        // false
+// console.log('TRUE?', equals(undefined, undefined));
+// console.log('FALSE?', equals(1, undefined));
+// console.log('FALSE?', equals(undefined, 1));
+// console.log('FALSE?', equals(undefined, null));
+// console.log('FALSE?', equals(undefined, NaN));
+// console.log('FALSE?', equals(NaN, undefined));
+// console.log('');
+
+// // sets
+// console.log('SETS:');
+// console.log('TRUE?', equals(new Set(), new Set()));
+// console.log('FALSE?', equals(new Set([1]), new Set()));
+// console.log('TRUE?', equals(new Set([1, 2, 3]), new Set([3, 2, 1])));
+// console.log('FALSE?', equals(new Set([[1], 2, 3]), new Set([[3], 2, 1])));
+// console.log('TRUE?', equals(new Set(new Set([1, 2, 3])), new Set([3, 2, 1])));
+// console.log('TRUE?', equals(new Set(new Set([1, 2, 3, 2, 1, 2, 3, 2, 1])), new Set([3, 2, 1])));
+// console.log('');
