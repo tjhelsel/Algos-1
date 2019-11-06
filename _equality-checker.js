@@ -1,5 +1,6 @@
 function equals (actual, expected) {
 
+  // IF actual OR expected IS EITHER undefined OR null THEN DIRECTLY COMPARE (AS THOSE DON'T HAVE CONSTRUCTORS)
   if (
     actual === undefined
     || expected === undefined
@@ -7,16 +8,18 @@ function equals (actual, expected) {
     || expected === null
   ) return actual === expected;
 
+  // CHECK CONSTRUCTORS. IF actual AND expected DO NOT HAVE THE SAME CONSTRUCTOR, RETURN FALSE
   if (actual.constructor !== expected.constructor) return false;
 
+  // NOW THE TEST VARIES DEPENDING ON THE CONSTRUCTOR...
   switch (actual.constructor) {
-    case Array:
+    case Array:                                               // ARRAYS: (1) check lengths, (2) recurse on elements
       if (actual.length !== expected.length) return false;
       for (let i = 0; i < actual.length; i++) {
         if (!equals(actual[i], expected[i])) return false;
       }
       return true;
-    case Object:
+    case Object:                                              // OBJECTS: (1) recurse on sorted keys, (2) compare values by key
       const actualKeys = Object.keys(actual).sort();
       const expectedKeys = Object.keys(expected).sort();
       if (!equals(actualKeys, expectedKeys)) return false;
@@ -24,9 +27,9 @@ function equals (actual, expected) {
         if (!equals(actual[actualKeys[i]], expected[expectedKeys[i]])) return false;
       }
       return true;
-    case String:
+    case String:                                              // STRINGS: direct comparison
       return actual === expected;
-    default:
+    default:                                                  // NUMBERS (default): (1) check whether actual and expected are both NaN, (2) direct comparison
       return (isNaN(actual) && isNaN(expected))
         ? true
         : actual === expected;
