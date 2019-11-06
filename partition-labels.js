@@ -25,6 +25,80 @@ function solution_1 (S) {
   // SOLUTION 1 [O(n) time, O(n) space]:
   // description
 
+  const partitions = flattenArray(cutString(S));
+  return partitions.map(partition => partition.length);
+
+  // HELPER FUNCTIONS BELOW
+
+  function cutString (S) {   
+    const letterTerminals = {};
+    for (let i = 0; i < S.length; i++) {
+      if (!(S[i] in letterTerminals)) {
+        letterTerminals[S[i]] = {first: i, last: i};
+      } else {
+        letterTerminals[S[i]].last = i;
+      }
+    }
+    for (let i = 1; i < S.length; i++) {
+      if (Object.keys(letterTerminals).every(letter =>
+        i <= letterTerminals[letter].first || i > letterTerminals[letter].last
+      )) {
+        return [cutString(S.slice(0, i)), cutString(S.slice(i))];
+      }
+    }
+    return [S];
+  };
+
+  function flattenArray (A) {
+    const output = [];
+    A.forEach(element => {
+      if (Array.isArray(element)) {
+        output.push(...flattenArray(element))
+      } else {
+        output.push(element);
+      }
+    });
+    return output;
+  };
+
+}
+
+function cutString (S) {   
+  const letterTerminals = {};
+  for (let i = 0; i < S.length; i++) {
+    if (!(S[i] in letterTerminals)) {
+      letterTerminals[S[i]] = {first: i, last: i};
+    } else {
+      letterTerminals[S[i]].last = i;
+    }
+  }
+  for (let i = 1; i < S.length; i++) {
+    if (Object.keys(letterTerminals).every(letter =>
+      i <= letterTerminals[letter].first || i > letterTerminals[letter].last
+    )) {
+      return [cutString(S.slice(0, i)), cutString(S.slice(i))];
+    }
+  }
+  return [S];
+};
+
+function flattenArray (A) {
+  const output = [];
+  A.forEach(element => {
+    if (Array.isArray(element)) {
+      output.push(...flattenArray(element))
+    } else {
+      output.push(element);
+    }
+  });
+  return output;
+};
+
+function solution_2 (S) {
+
+  // SOLUTION 2 [O(n) time, O(n) space]:
+  // description
+
   // STEP 1: FIND LETTER TERMINALS
   const letterTerminals = {};
   for (let i = 0; i < S.length; i++) {
