@@ -33,6 +33,8 @@ function equals (actual, expected) {
   }
 }
 
+module.exports = equals;
+
 // // numbers
 // console.log('NUMBERS:');
 // console.log(equals(1, 1));  // true
@@ -88,5 +90,3 @@ function equals (actual, expected) {
 // console.log(equals(undefined, null));       // false
 // console.log(equals(undefined, NaN));        // false
 // console.log(equals(NaN, undefined));        // false
-
-module.exports = equals;
