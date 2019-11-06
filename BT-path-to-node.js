@@ -16,17 +16,17 @@
 // If target value is 'H', return ['A', 'B', 'D', 'H']
 // If target value is 'Z', return []
 
-// NOTE: I developed the following CompleteTree and Batch classes for easy creation of binary trees with arbitrary values.
+// NOTE: I developed the following BinaryTree and Batch classes for easy creation of binary trees with arbitrary values.
 
-class CompleteTree {
+class BinaryTree {
   constructor (value) {
     this.value = value;
     this.left = null;
     this.right = null;
   }
   insert (left, right, firstInsert = false) {
-    if (left !== null) this.left = new CompleteTree(left);
-    if (right !== null) this.right = new CompleteTree(right);
+    if (left !== null) this.left = new BinaryTree(left);
+    if (right !== null) this.right = new BinaryTree(right);
     return firstInsert ? new Batch(this, [this.left, this.right]) : [this.left, this.right];
   }
 
@@ -83,13 +83,13 @@ class Batch {
 const test = require('./_test');
 const testNum = [1];
 let input, expected;
-const func = (new CompleteTree).findPathToTarget;
+const func = (new BinaryTree).findPathToTarget;
 const lowestTest = 0 || 0;
 const highestTest = 0 || Infinity;
 
 // Test case 1
 input = {
-  root: new CompleteTree('A')
+  root: new BinaryTree('A')
     .insert('B', 'C', true)               // first .insert must END with 'true' argument
     .insert(false, 'D', 'E', 'F', 'G')    // subsequent .inserts must START with 'false' argument...
     .insert(true, 'H'),                   // ...except the last .insert which must START with 'true' argument
@@ -100,7 +100,7 @@ test(func.bind(input.root), {target: input.target}, expected, testNum, lowestTes
 
 // Test case 2
 input = {
-  root: new CompleteTree('A')
+  root: new BinaryTree('A')
     .insert('B', 'C', true)               // first .insert must END with 'true' argument
     .insert(false, 'D', 'E', 'F', 'G')    // subsequent .inserts must START with 'false' argument...
     .insert(true, 'H'),                   // ...except the last .insert which must START with 'true' argument
@@ -111,7 +111,7 @@ test(func.bind(input.root), {target: input.target}, expected, testNum, lowestTes
 
 // Test case 3
 input = {
-  root: new CompleteTree('A')
+  root: new BinaryTree('A')
     .insert('B', 'C', true)               // first .insert must END with 'true' argument
     .insert(false, 'D', 'E', 'F', 'G')    // subsequent .inserts must START with 'false' argument...
     .insert(true, 'H'),                   // ...except the last .insert which must START with 'true' argument
