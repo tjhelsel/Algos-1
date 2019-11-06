@@ -18,17 +18,25 @@
 // S will consist of lowercase letters ('a' to 'z') only.
 
 // SWITCHING BETWEEN SOLUTIONS:
-const partitionLabels = solution_1;
+const partitionLabels = solution_2;
 
 function solution_1 (S) {
 
-  // SOLUTION 1 [O(n) time, O(n) space]:
-  // description
+  // SOLUTION 1 [O(n^2) time, O(n^2?) space (when taking into account the call stack)]:
+  // this solution uses a helper function, cutString, that does most of the heavy lifting - it takes in the input string, and proceeds to chop it up into the appropriate
+  // partitions, and returns an array of the partitioned strings. the main function then maps them according to their length. the cutString helper function works by first
+  // populating a memo called letterTerminals that iterates through every letter of the string and tracks the indices of their first and last appearance. then, it iterates
+  // through every possible index where a partition can be made (starting at 1) and evaluates whether that index is either less than or equal to the first appearance OR
+  // greater than the last appearance for EVERY letter in the memo - if so, then this is a valid partition, because for each letter, every occurrence of that letter either
+  // appears before or after that cut. whenever a valid cut is found, we slice from the beginning of the string to the cut position, and concatenate it with a recursed call
+  // of cutString on the remainder of the string. in the base case, we simply return the entire (sub)string in array form. eventually, the original call of cutString should
+  // return a single array of partitioned strings. notice that all the cut positions will be found from left to right, but every candidate cut position needs to be evaluated
+  // against the terminal positions of every letter - hence the quadratic time.
 
-  const partitions = flattenArray(cutString(S));
+  const partitions = cutString(S);
   return partitions.map(partition => partition.length);
 
-  // HELPER FUNCTIONS BELOW
+  // HELPER FUNCTION(S) BELOW
 
   function cutString (S) {   
     const letterTerminals = {};
@@ -41,63 +49,25 @@ function solution_1 (S) {
     }
     for (let i = 1; i < S.length; i++) {
       if (Object.keys(letterTerminals).every(letter =>
-        i <= letterTerminals[letter].first || i > letterTerminals[letter].last
+        i <= letterTerminals[letter].first || i > letterTerminals[letter].last    // valid partition if for every letter, every occurrence of the letter is before or after cut
       )) {
-        return [cutString(S.slice(0, i)), cutString(S.slice(i))];
+        return [S.slice(0, i)].concat(cutString(S.slice(i)));   // recursive case - slice from beginning up to the cut, and recurse on the remainder of (sub)string
       }
     }
-    return [S];
+    return [S];                                                 // base case - no more cuts can be made on this (sub)string - return entire (sub)string in array form
   };
-
-  function flattenArray (A) {
-    const output = [];
-    A.forEach(element => {
-      if (Array.isArray(element)) {
-        output.push(...flattenArray(element))
-      } else {
-        output.push(element);
-      }
-    });
-    return output;
-  };
-
 }
-
-function cutString (S) {   
-  const letterTerminals = {};
-  for (let i = 0; i < S.length; i++) {
-    if (!(S[i] in letterTerminals)) {
-      letterTerminals[S[i]] = {first: i, last: i};
-    } else {
-      letterTerminals[S[i]].last = i;
-    }
-  }
-  for (let i = 1; i < S.length; i++) {
-    if (Object.keys(letterTerminals).every(letter =>
-      i <= letterTerminals[letter].first || i > letterTerminals[letter].last
-    )) {
-      return [cutString(S.slice(0, i)), cutString(S.slice(i))];
-    }
-  }
-  return [S];
-};
-
-function flattenArray (A) {
-  const output = [];
-  A.forEach(element => {
-    if (Array.isArray(element)) {
-      output.push(...flattenArray(element))
-    } else {
-      output.push(element);
-    }
-  });
-  return output;
-};
 
 function solution_2 (S) {
 
   // SOLUTION 2 [O(n) time, O(n) space]:
-  // description
+  // similar to above, we are greedily going from left to right and finding each valid cut position as they come. however, here, we have a more efficient way of checking if a candidate
+  // cut position is valid. instead of checking it against the terminals of each letter, instead we can apply the following logic: if our leftmost partition includes the first letter,
+  // then there is no way we can end the partition until after the final occurrence of the first letter. (assume that this is somewhere in the middle of the string.) so, we must include
+  // the next letter in the partition. but that may be a different letter, which may have an even later terminal. the idea, then, is to keep incrementing i along the string, updating
+  // the highestTerminal with each iteration as appropriate. eventually when we reach a point when i === highestTerminal, we know that we have found a valid cut position. we will
+  // add what we have so far into an output array, then set up to find the next partition, until we cover the entire string. this requires only one pass through the string. note that
+  // the memo only needs the last occurrence for each letter - the first occurrence is irrelevant.
 
   // STEP 1: FIND LETTER TERMINALS
   const letterTerminals = {};
