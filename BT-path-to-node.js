@@ -35,7 +35,7 @@ class CompleteTree {
 
   solution_1 (target) {
 
-    // SOLUTION 1 [O(?) time, O(?) space]:
+    // SOLUTION 1 [O(n) time (n is the number of nodes in the tree), O(d) space (d is the depth of the tree)]:
     // this solution uses DFS backtracking. we start with an initial output 'path' of []. we write a recursive 'go' function that returns a boolean whether a valid path exists, given
     // the current path described in output. if the current node does not exist, return false. otherwise, add the current node's value to the output path. if the current node's value
     // is the target, return true. otherwise, recurse on node.left and node.right. if either are those ultimately result in true, then return true (which 'bubbles up' the truthy
