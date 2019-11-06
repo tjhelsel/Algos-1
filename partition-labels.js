@@ -67,7 +67,8 @@ function solution_2 (S) {
   // the next letter in the partition. but that may be a different letter, which may have an even later terminal. the idea, then, is to keep incrementing i along the string, updating
   // the highestTerminal with each iteration as appropriate. eventually when we reach a point when i === highestTerminal, we know that we have found a valid cut position. we will
   // add what we have so far into an output array, then set up to find the next partition, until we cover the entire string. this requires only one pass through the string. note that
-  // the memo only needs the last occurrence for each letter - the first occurrence is irrelevant.
+  // the memo only needs the last occurrence for each letter - the first occurrence is irrelevant. also, note that we do not even have to store the string partitions, since ultimately
+  // we only care aobut their lengths - so instead of pushing the substrings into the output array, just push their lengths.
 
   // STEP 1: FIND LETTER TERMINALS
   const letterTerminals = {};
@@ -82,7 +83,7 @@ function solution_2 (S) {
   for (let i = 0; i < S.length; i++) {
     highestTerminal = Math.max(highestTerminal, letterTerminals[S[i]]);   // update highestTerminal?
     if (i === highestTerminal) {                                          // if i hits highestTerminal then that's a partition
-      output.push(S.slice(partitionStart, highestTerminal + 1));
+      output.push(highestTerminal - partitionStart + 1);
       if (i < S.length - 1) {                                             // only update if not last letter, else crash
         partitionStart = highestTerminal + 1;
         highestTerminal = letterTerminals[S[partitionStart]];
@@ -90,7 +91,7 @@ function solution_2 (S) {
     }
   }
   
-  return output.map(partition => partition.length);
+  return output;
 }
 
 // TEST CASES
